@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookNest - Online eBook Platform</title>
+    <link rel="icon" type="image/png" href="D:\TECH_Training_10DAYS\BookNest_copy">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo_box">B</span>
+                <span class="logo_text">BookNest</span>
+            </div>
+            <ul class="nav_links">
+                <li><a href="index.html" class="active_pill">Home</a></li>
+                <li><a href="pages/browse.html">Categories</a></li>
+                <li><a href="pages/browse.html">Explore</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            <div class="nav_buttons">
+                <a href="pages/login.html" class="login_btn">Login</a>
+                <a href="pages/register.html" class="register_btn_nav">Register</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero_landing">
+        <div class="hero_landing_left">
+            <span class="badge_hero_landing_left" id="badge-books-count">20,000+ Books Available</span>
+            <h1>Discover Your Next <br><span class="highlight_text">Great Read</span></h1>
+            <p>Access our curated catalog of ebooks across every genre. Read anywhere, anytime, on any device. Join our growing community of readers on BookNest.</p>
+
+            <div class="search_box_landing">
+                <input type="text" placeholder="Search books, authors, or categories...">
+                <button>Search</button>
+            </div>
+
+            <div class="below_search_books">
+                <button class="bsb_primary_btn">Start Reading Free &rarr;</button>
+                <button class="bsb_secondary_btn">Browse Books</button>
+            </div>
+
+            <!-- Statistics -->
+            <div class="statistics_row">
+                <div class="stat_item">
+                    <h3 id="stat-books">20k+</h3>
+                    <p>Books</p>
+                </div>
+                <div class="stat_item">
+                    <h3 id="stat-readers">500k+</h3>
+                    <p>Readers</p>
+                </div>
+                <div class="stat_item">
+                    <h3 id="stat-categories">50+</h3>
+                    <p>Categories</p>
+                </div>
+                <div class="stat_item">
+                    <h3 id="stat-rating">4.9&bigstar;</h3>
+                    <p>Avg Rating</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero_landing_right">
+            <div class="featured_holder" id="featuredBookContainer">
+                <span class="featured_tag">FEATURED BOOK</span>
+                <div class="book_card">
+                    <div class="book_image cover_atomic_habits">
+                        <span class="book_avatar">AH</span>
+                        <div class="book_cover_title">Atomic Habits</div>
+                        <div class="book_cover_author">James Clear</div>
+                    </div>
+                    <h4>Atomic Habits</h4>
+                    <p>James Clear</p>
+                    <div class="rating_stars">
+                        <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    </div>
+                    <button class="btn_start_reading">Start Reading</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories_section">
+        <div class="section_header">
+            <div>
+                <span class="section_badge">EXPLORE</span>
+                <h2>Popular Categories</h2>
+            </div>
+            <a href="pages/browse.html" class="view_all_link">View All &rarr;</a>
+        </div>
+
+        <div class="categories_row">
+            <div class="category_card cat_programming">
+                <span class="cat_icon">&#128187;</span>
+                <h3>Programming</h3>
+                <p>8 books</p>
+            </div>
+            <div class="category_card cat_technology">
+                <span class="cat_icon">&#128300;</span>
+                <h3>Technology</h3>
+                <p>1 books</p>
+            </div>
+            <div class="category_card cat_fiction">
+                <span class="cat_icon">&#128214;</span>
+                <h3>Fiction</h3>
+                <p>4 books</p>
+            </div>
+            <div class="category_card cat_business">
+                <span class="cat_icon">&#128188;</span>
+                <h3>Business</h3>
+                <p>5 books</p>
+            </div>
+            <div class="category_card cat_science">
+                <span class="cat_icon">&#128301;</span>
+                <h3>Science</h3>
+                <p>3 books</p>
+            </div>
+            <div class="category_card cat_history">
+                <span class="cat_icon">&#127963;</span>
+                <h3>History</h3>
+                <p>2 books</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Books Section -->
+    <section class="trending_section">
+        <div class="section_header">
+            <div>
+                <span class="section_badge">HOT RIGHT NOW</span>
+                <h2>Trending Books</h2>
+            </div>
+            <a href="pages/browse.html" class="view_all_link">See All &rarr;</a>
+        </div>
+
+        <div class="books_grid" id="trendingBooksGrid">
+            <!-- Book Card 1 -->
+            <div class="book_card">
+                <div class="book_image cover_clean_code">
+                    <span class="book_avatar">CC</span>
+                    <div class="book_cover_title">Clean Code</div>
+                    <div class="book_cover_author">Robert C. Martin</div>
+                </div>
+                <span class="book_card_category">PROGRAMMING</span>
+                <h4>Clean Code</h4>
+                <p class="book_card_author">Robert C. Martin</p>
+                <div class="book_card_meta">
+                    <div class="rating_stars">
+                        <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="rating_num">4.8</span>
+                    </div>
+                    <p class="reviews_pages">3,240 reviews &middot; 431 pages</p>
+                </div>
+                <button class="btn_read_now">Read Now</button>
+            </div>
+
+            <!-- Book Card 2 -->
+            <div class="book_card">
+                <div class="book_image cover_pragmatic">
+                    <span class="book_avatar">TP</span>
+                    <div class="book_cover_title">The Pragmatic Programmer</div>
+                    <div class="book_cover_author">David Thomas</div>
+                </div>
+                <span class="book_card_category">PROGRAMMING</span>
+                <h4>The Pragmatic Programmer</h4>
+                <p class="book_card_author">David Thomas & Andrew Hunt</p>
+                <div class="book_card_meta">
+                    <div class="rating_stars">
+                        <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="rating_num">4.7</span>
+                    </div>
+                    <p class="reviews_pages">2,890 reviews &middot; 352 pages</p>
+                </div>
+                <button class="btn_read_now">Read Now</button>
+            </div>
+
+            <!-- Book Card 3 -->
+            <div class="book_card">
+                <div class="book_image cover_dune">
+                    <span class="book_avatar">D</span>
+                    <div class="book_cover_title">Dune</div>
+                    <div class="book_cover_author">Frank Herbert</div>
+                </div>
+                <span class="book_card_category">FICTION</span>
+                <h4>Dune</h4>
+                <p class="book_card_author">Frank Herbert</p>
+                <div class="book_card_meta">
+                    <div class="rating_stars">
+                        <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="rating_num">4.9</span>
+                    </div>
+                    <p class="reviews_pages">8,720 reviews &middot; 608 pages</p>
+                </div>
+                <button class="btn_read_now">Read Now</button>
+            </div>
+
+            <!-- Book Card 4 -->
+            <div class="book_card">
+                <div class="book_image cover_atomic_habits">
+                    <span class="book_avatar">AH</span>
+                    <div class="book_cover_title">Atomic Habits</div>
+                    <div class="book_cover_author">James Clear</div>
+                </div>
+                <span class="book_card_category">BUSINESS</span>
+                <h4>Atomic Habits</h4>
+                <p class="book_card_author">James Clear</p>
+                <div class="book_card_meta">
+                    <div class="rating_stars">
+                        <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="rating_num">4.9</span>
+                    </div>
+                    <p class="reviews_pages">15,320 reviews &middot; 320 pages</p>
+                </div>
+                <button class="btn_read_now">Read Now</button>
+            </div>
+
+            <!-- Book Card 5 -->
+            <div class="book_card">
+                <div class="book_image cover_sapiens">
+                    <span class="book_avatar">S</span>
+                    <div class="book_cover_title">Sapiens</div>
+                    <div class="book_cover_author">Yuval Noah Harari</div>
+                </div>
+                <span class="book_card_category">HISTORY</span>
+                <h4>Sapiens</h4>
+                <p class="book_card_author">Yuval Noah Harari</p>
+                <div class="book_card_meta">
+                    <div class="rating_stars">
+                        <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="rating_num">4.8</span>
+                    </div>
+                    <p class="reviews_pages">11,230 reviews &middot; 443 pages</p>
+                </div>
+                <button class="btn_read_now">Read Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recently Added Section -->
+    <section class="recently_added_section">
+        <div class="section_header">
+            <div>
+                <h2>Recently Added</h2>
+            </div>
+            <a href="pages/browse.html" class="view_all_link">View All &rarr;</a>
+        </div>
+
+        <div class="books_grid_recently" id="recentBooksGrid">
+            <!-- Book Card 1 -->
+            <div class="book_card">
+                <div class="book_image cover_design_patterns">
+                    <span class="book_avatar">DP</span>
+                    <div class="book_cover_title">Design Patterns</div>
+                    <div class="book_cover_author">Gang of Four</div>
+                </div>
+                <span class="book_card_category">PROGRAMMING</span>
+                <h4>Design Patterns</h4>
+                <p class="book_card_author">Gang of Four</p>
+                <div class="book_card_meta">
+                    <div class="rating_stars">
+                        <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="rating_num">4.6</span>
+                    </div>
+                    <p class="reviews_pages">2,180 reviews &middot; 384 pages</p>
+                </div>
+                <button class="btn_read_now">Read Now</button>
+            </div>
+
+            <!-- Book Card 2 -->
+            <div class="book_card">
+                <div class="book_image cover_1984">
+                    <span class="book_avatar">1</span>
+                    <div class="book_cover_title">1984</div>
+                    <div class="book_cover_author">George Orwell</div>
+                </div>
+                <span class="book_card_category">FICTION</span>
+                <h4>1984</h4>
+                <p class="book_card_author">George Orwell</p>
+                <div class="book_card_meta">
+                    <div class="rating_stars">
+                        <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="rating_num">4.8</span>
+                    </div>
+                    <p class="reviews_pages">12,450 reviews &middot; 328 pages</p>
+                </div>
+                <button class="btn_read_now">Read Now</button>
+            </div>
+
+            <!-- Book Card 3 -->
+            <div class="book_card">
+                <div class="book_image cover_deep_work">
+                    <span class="book_avatar">DW</span>
+                    <div class="book_cover_title">Deep Work</div>
+                    <div class="book_cover_author">Cal Newport</div>
+                </div>
+                <span class="book_card_category">BUSINESS</span>
+                <h4>Deep Work</h4>
+                <p class="book_card_author">Cal Newport</p>
+                <div class="book_card_meta">
+                    <div class="rating_stars">
+                        <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="rating_num">4.8</span>
+                    </div>
+                    <p class="reviews_pages">8,560 reviews &middot; 304 pages</p>
+                </div>
+                <button class="btn_read_now">Read Now</button>
+            </div>
+
+            <!-- Book Card 4 -->
+            <div class="book_card">
+                <div class="book_image cover_gatsby">
+                    <span class="book_avatar">TG</span>
+                    <div class="book_cover_title">The Great Gatsby</div>
+                    <div class="book_cover_author">F. Scott Fitzgerald</div>
+                </div>
+                <span class="book_card_category">FICTION</span>
+                <h4>The Great Gatsby</h4>
+                <p class="book_card_author">F. Scott Fitzgerald</p>
+                <div class="book_card_meta">
+                    <div class="rating_stars">
+                        <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="rating_num">4.4</span>
+                    </div>
+                    <p class="reviews_pages">9,920 reviews &middot; 180 pages</p>
+                </div>
+                <button class="btn_read_now">Read Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Authors Section -->
+    <section class="authors_section">
+        <div class="section_header_centered">
+            <span class="section_badge">MEET THE MINDS</span>
+            <h2>Featured Authors</h2>
+        </div>
+
+        <div class="authors_row">
+            <!-- Author 1 -->
+            <div class="author_card">
+                <div class="author_avatar auth_blue">R</div>
+                <h3>Robert C. Martin</h3>
+                <p>Software Engineering</p>
+                <a href="pages/browse.html?author=Robert%20C.%20Martin" class="author_books_link">12 Books &rarr;</a>
+            </div>
+            <!-- Author 2 -->
+            <div class="author_card">
+                <div class="author_avatar auth_purple">F</div>
+                <h3>Frank Herbert</h3>
+                <p>Science Fiction</p>
+                <a href="pages/browse.html?author=Frank%20Herbert" class="author_books_link">8 Books &rarr;</a>
+            </div>
+            <!-- Author 3 -->
+            <div class="author_card">
+                <div class="author_avatar auth_teal">J</div>
+                <h3>James Clear</h3>
+                <p>Self Development</p>
+                <a href="pages/browse.html?author=James%20Clear" class="author_books_link">3 Books &rarr;</a>
+            </div>
+            <!-- Author 4 -->
+            <div class="author_card">
+                <div class="author_avatar auth_indigo">C</div>
+                <h3>Carl Sagan</h3>
+                <p>Astronomy & Science</p>
+                <a href="pages/browse.html?author=Carl%20Sagan" class="author_books_link">14 Books &rarr;</a>
+            </div>
+            <!-- Author 5 -->
+            <div class="author_card">
+                <div class="author_avatar auth_gray">G</div>
+                <h3>George Orwell</h3>
+                <p>Dystopian Fiction</p>
+                <a href="pages/browse.html?author=George%20Orwell" class="author_books_link">9 Books &rarr;</a>
+            </div>
+            <!-- Author 6 -->
+            <div class="author_card">
+                <div class="author_avatar auth_orange">Y</div>
+                <h3>Yuval Noah Harari</h3>
+                <p>History & Philosophy</p>
+                <a href="pages/browse.html?author=Yuval%20Noah%20Harari" class="author_books_link">5 Books &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call To Action Section -->
+    <section class="cta_section">
+        <div class="cta_container">
+            <div class="cta_content">
+                <h2>Start Reading Today</h2>
+                <p>Start your reading journey today. Free to join, no credit card required.</p>
+            </div>
+            <div class="cta_buttons">
+                <a href="pages/register.html" class="cta_btn_primary">Create Free Account</a>
+                <a href="pages/login.html" class="cta_btn_secondary">Login</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer_top">
+            <div class="footer_column footer_desc">
+                <div class="logo">
+                    <span class="logo_box">B</span>
+                    <span class="logo_text text_white">BookNest</span>
+                </div>
+                <p>Your premium destination for digital reading. Discover thousands of books across every genre, from
+                    anywhere.</p>
+            </div>
+            <div class="footer_column">
+                <h3>Platform</h3>
+                <ul>
+                    <li><a href="pages/browse.html">Browse Books</a></li>
+                    <li><a href="pages/browse.html">Categories</a></li>
+                    <li><a href="#">Trending</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="pages/login.html">Login</a></li>
+                    <li><a href="pages/register.html">Register</a></li>
+                    <li><a href="pages/dashboard.html">Dashboard</a></li>
+                    <li><a href="pages/profile.html">Profile</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <p>&copy; 2026 BookNest. All rights reserved. Built for Java Full Stack Development Project.</p>
+            <p>Made with &hearts; for book lovers everywhere.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Link -->
+    <script src="js/api-patch.js"></script>
+    <script src="js/main.js?v=1.2"></script>
+</body>
+
+</html>
+<!-- powershell -ExecutionPolicy Bypass -File .\deploy.ps1 -->

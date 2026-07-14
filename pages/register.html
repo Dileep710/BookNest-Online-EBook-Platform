@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - BookNest</title>
+    <link rel="stylesheet" href="../css/register.css">
+</head>
+<body>
+
+    <!-- Main Wrapper Centered -->
+    <div class="register_wrapper">
+        <!-- Logo centered above card -->
+        <div class="register_logo" onclick="window.location.href='../index.html'">
+            <span class="logo_box">B</span>
+            <span class="logo_text">BookNest</span>
+        </div>
+
+        <!-- Register Card -->
+        <div class="register_card">
+            <h2>Create your account</h2>
+            <p class="register_subtitle">Join 500,000+ readers on BookNest</p>
+
+            <!-- Form -->
+            <form id="registerForm">
+                <!-- Full Name Field -->
+                <div class="form_group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="John Doe" required>
+                </div>
+
+                <!-- Email Field -->
+                <div class="form_group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+
+                <!-- Passwords Row (Side-by-side) -->
+                <div class="form_row_passwords">
+                    <div class="form_group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Min. 6 characters" required>
+                    </div>
+                    <div class="form_group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repeat password" required>
+                    </div>
+                </div>
+
+                <!-- Agreement Notice Box -->
+                <div class="agreement_box">
+                    <p>By creating an account, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+                </div>
+
+                <!-- Register Button -->
+                <button type="submit" class="register_btn_submit">Create Free Account &rarr;</button>
+            </form>
+
+            <!-- Redirect to Login -->
+            <div class="register_footer">
+                <p>Already have an account? <a href="login.html">Sign in</a></p>
+            </div>
+        </div>
+
+        <!-- Back Link -->
+        <a href="../index.html" class="back_to_home">&larr; Back to Home</a>
+    </div>
+
+    <!-- JS script -->
+    <script src="../js/api-patch.js"></script>
+    <script src="../js/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - BookNest</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo" onclick="window.location.href='../index.html'">
+                <span class="logo_box">R</span>
+                <span class="logo_text">BookNest</span>
+            </div>
+            <ul class="nav_links">
+                <li><a href="dashboard.html" class="active_pill">Dashboard</a></li>
+                <li><a href="browse-books.html">Browse</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="dashboard_container">
+        <!-- Welcome Greeting Block -->
+        <div class="welcome_block" style="margin-bottom: 25px;">
+            <h1 class="welcome_title" style="font-family: Georgia, serif; font-size: 28px; color: #0f172a; margin-bottom: 4px;">Welcome Back, <span id="welcomeUserName">User</span>!</h1>
+            <p class="current_date" id="currentDateText" style="color: #64748b; font-size: 14px; font-weight: 500;"></p>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="dashboard_grid">
+            
+            <!-- Left Main Column (70%) -->
+            <div class="dashboard_main">
+                
+                <!-- Continue Reading Section -->
+                <section class="dashboard_section">
+                    <h2 class="section_title">Continue Reading</h2>
+                    <div class="continue_reading_card">
+                        <div class="book_image_small cover_clean_code">
+                            <span class="book_avatar">CC</span>
+                            <div class="book_cover_title">Clean Code</div>
+                            <div class="book_cover_author">Robert C. Martin</div>
+                        </div>
+                        <div class="continue_details">
+                            <span class="category_tag">PROGRAMMING</span>
+                            <h3>Clean Code</h3>
+                            <p class="author_name">Robert C. Martin</p>
+                            
+                            <div class="reading_progress_container">
+                                <div class="progress_label">
+                                    <span>Reading progress</span>
+                                    <span class="progress_percent">42%</span>
+                                </div>
+                                <div class="progress_bar_bg">
+                                    <div class="progress_bar_fill" style="width: 42%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="continue_actions">
+                                <button class="btn_continue" onclick="window.location.href='read-book.html?book=Clean%20Code'">Continue Reading</button>
+                                <button class="btn_details_outline" onclick="window.location.href='book-details.html?book=Clean%20Code'">Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recently Added Section -->
+                <section class="dashboard_section">
+                    <div class="section_header_dash">
+                        <h2 class="section_title">Recently Added</h2>
+                        <a href="browse-books.html" class="view_all_link">Browse All &rarr;</a>
+                    </div>
+                    
+                    <div class="recommended_grid">
+                        <!-- Book 1 -->
+                        <div class="book_card_dash" onclick="window.location.href='book-details.html?book=JS:%20The%20Good%20Parts'">
+                            <div class="book_image cover_pragmatic">
+                                <span class="book_avatar">JP</span>
+                                <div class="book_cover_title">JS: The Good Parts</div>
+                            </div>
+                            <span class="card_category">PROGRAMMING</span>
+                            <h4>JS: The Good Parts</h4>
+                            <p>Douglas Crockford</p>
+                            <div class="rating_row">
+                                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                <span class="rating_val">4.6</span>
+                            </div>
+                            <button class="btn_read_card" onclick="event.stopPropagation(); window.location.href='read-book.html?book=JS:%20The%20Good%20Parts'">Read Now</button>
+                        </div>
+
+                        <!-- Book 2 -->
+                        <div class="book_card_dash" onclick="window.location.href='book-details.html?book=Design%20Patterns'">
+                            <div class="book_image cover_atomic_habits">
+                                <span class="book_avatar">DP</span>
+                                <div class="book_cover_title">Design Patterns</div>
+                            </div>
+                            <span class="card_category">PROGRAMMING</span>
+                            <h4>Design Patterns</h4>
+                            <p>Gang of Four</p>
+                            <div class="rating_row">
+                                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                                <span class="rating_val">4.6</span>
+                            </div>
+                            <button class="btn_read_card" onclick="event.stopPropagation(); window.location.href='read-book.html?book=Design%20Patterns'">Read Now</button>
+                        </div>
+
+                        <!-- Book 3 -->
+                        <div class="book_card_dash" onclick="window.location.href='book-details.html?book=Zero%20to%20One'">
+                            <div class="book_image cover_sapiens">
+                                <span class="book_avatar">ZO</span>
+                                <div class="book_cover_title">Zero to One</div>
+                            </div>
+                            <span class="card_category">BUSINESS</span>
+                            <h4>Zero to One</h4>
+                            <p>Peter Thiel</p>
+                            <div class="rating_row">
+                                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                <span class="rating_val">4.7</span>
+                            </div>
+                            <button class="btn_read_card" onclick="event.stopPropagation(); window.location.href='read-book.html?book=Zero%20to%20One'">Read Now</button>
+                        </div>
+
+                        <!-- Book 4 -->
+                        <div class="book_card_dash" onclick="window.location.href='book-details.html?book=Atomic%20Habits'">
+                            <div class="book_image cover_dune">
+                                <span class="book_avatar">AH</span>
+                                <div class="book_cover_title">Atomic Habits</div>
+                            </div>
+                            <span class="card_category">BUSINESS</span>
+                            <h4>Atomic Habits</h4>
+                            <p>James Clear</p>
+                            <div class="rating_row">
+                                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                                <span class="rating_val">4.9</span>
+                            </div>
+                            <button class="btn_read_card" onclick="event.stopPropagation(); window.location.href='read-book.html?book=Atomic%20Habits'">Read Now</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recommended Books Section -->
+                <section class="dashboard_section">
+                    <div class="section_header_dash">
+                        <h2 class="section_title">Recommended Books</h2>
+                        <a href="browse-books.html" class="view_all_link">Browse All &rarr;</a>
+                    </div>
+                    
+                    <div class="recommended_grid">
+                        <!-- Book 1 -->
+                        <div class="book_card_dash" onclick="window.location.href='book-details.html?book=The%20Pragmatic%20Programmer'">
+                            <div class="book_image cover_pragmatic">
+                                <span class="book_avatar">TP</span>
+                                <div class="book_cover_title">The Pragmatic Programmer</div>
+                            </div>
+                            <span class="card_category">PROGRAMMING</span>
+                            <h4>The Pragmatic Programmer</h4>
+                            <p>David Thomas</p>
+                            <div class="rating_row">
+                                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                <span class="rating_val">4.7</span>
+                            </div>
+                            <button class="btn_read_card" onclick="event.stopPropagation(); window.location.href='read-book.html?book=The%20Pragmatic%20Programmer'">Read Now</button>
+                        </div>
+
+                        <!-- Book 2 -->
+                        <div class="book_card_dash" onclick="window.location.href='book-details.html?book=1984'">
+                            <div class="book_image cover_1984">
+                                <span class="book_avatar">1</span>
+                                <div class="book_cover_title">1984</div>
+                            </div>
+                            <span class="card_category">FICTION</span>
+                            <h4>1984</h4>
+                            <p>George Orwell</p>
+                            <div class="rating_row">
+                                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                                <span class="rating_val">4.8</span>
+                            </div>
+                            <button class="btn_read_card" onclick="event.stopPropagation(); window.location.href='read-book.html?book=1984'">Read Now</button>
+                        </div>
+
+                        <!-- Book 3 -->
+                        <div class="book_card_dash" onclick="window.location.href='book-details.html?book=A%20Brief%20History%20of%20Time'">
+                            <div class="book_image cover_sapiens">
+                                <span class="book_avatar">AB</span>
+                                <div class="book_cover_title">A Brief History of Time</div>
+                            </div>
+                            <span class="card_category">SCIENCE</span>
+                            <h4>A Brief History of Time</h4>
+                            <p>Stephen Hawking</p>
+                            <div class="rating_row">
+                                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                <span class="rating_val">4.7</span>
+                            </div>
+                            <button class="btn_read_card" onclick="event.stopPropagation(); window.location.href='read-book.html?book=A%20Brief%20History%20of%20Time'">Read Now</button>
+                        </div>
+
+                        <!-- Book 4 -->
+                        <div class="book_card_dash" onclick="window.location.href='book-details.html?book=Sapiens'">
+                            <div class="book_image cover_dune">
+                                <span class="book_avatar">S</span>
+                                <div class="book_cover_title">Sapiens</div>
+                            </div>
+                            <span class="card_category">HISTORY</span>
+                            <h4>Sapiens</h4>
+                            <p>Yuval Noah Harari</p>
+                            <div class="rating_row">
+                                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                                <span class="rating_val">4.8</span>
+                            </div>
+                            <button class="btn_read_card" onclick="event.stopPropagation(); window.location.href='read-book.html?book=Sapiens'">Read Now</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Sidebar Column (30%) -->
+            <div class="dashboard_sidebar">
+                
+                <!-- Quick Links Card -->
+                <div class="sidebar_card">
+                    <h3>Quick Links</h3>
+                    <ul class="quick_links_list">
+                        <li><a href="browse-books.html"><span class="link_icon">&#128218;</span> Browse Books <span class="arrow">&rarr;</span></a></li>
+                        <li><a href="history.html"><span class="link_icon">&#128338;</span> Reading History <span class="arrow">&rarr;</span></a></li>
+                        <li><a href="profile.html"><span class="link_icon">&#128100;</span> My Profile <span class="arrow">&rarr;</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- My Favorites Card -->
+                <div class="sidebar_card" id="favoritesSidebarCard" style="margin-top: 20px;">
+                    <h3>My Favorites</h3>
+                    <ul class="quick_links_list" id="favoritesListContainer">
+                        <li style="color: #64748b; font-size: 14px; padding: 10px 0;">No favorites added yet.</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer_top">
+            <div class="footer_column footer_desc">
+                <div class="logo">
+                    <span class="logo_box">R</span>
+                    <span class="logo_text text_white">BookNest</span>
+                </div>
+                <p>Your premium destination for digital reading. Discover thousands of books across every genre, from anywhere.</p>
+            </div>
+            <div class="footer_column">
+                <h3>Platform</h3>
+                <ul>
+                    <li><a href="browse-books.html">Browse Books</a></li>
+                    <li><a href="browse-books.html">Categories</a></li>
+                    <li><a href="#">Trending</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <p>&copy; 2026 BookNest. All rights reserved. Built for Java Full Stack Development Project.</p>
+            <p>Made with &hearts; for book lovers everywhere.</p>
+        </div>
+    </footer>
+
+    <script src="../js/api-patch.js"></script>
+    <script src="../js/dashboard.js?v=1.4"></script>
+</body>
+</html>

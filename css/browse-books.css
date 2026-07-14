@@ -1,0 +1,626 @@
+/* ==========================================
+   BookNest - Browse Books Stylesheet
+   Student Project Style
+   ========================================== */
+
+/* Global Reset & Body Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f8fafc;
+    color: #334155;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Typography styles for student evaluation */
+h1, h2, h3, .logo_text, .sidebar_filter_card h3 {
+    font-family: Georgia, serif;
+    color: #0f172a;
+}
+
+/* ==========================================
+   Header & Navigation
+   ========================================== */
+header {
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 24px;
+}
+
+/* Logo styling */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.logo_box {
+    background-color: #2563eb;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: sans-serif;
+}
+
+.logo_text {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+/* Navigation Links */
+.nav_links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav_links a {
+    font-size: 15px;
+    font-weight: 500;
+    color: #475569;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav_links a:hover {
+    color: #2563eb;
+    background-color: #f1f5f9;
+}
+
+.nav_links a.active_pill {
+    background-color: #e0f2fe;
+    color: #2563eb;
+}
+
+/* Auth Buttons */
+.nav_buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.login_btn {
+    font-size: 15px;
+    font-weight: 500;
+    color: #475569;
+    padding: 8px 16px;
+}
+
+.login_btn:hover {
+    color: #2563eb;
+}
+
+.register_btn_nav {
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.register_btn_nav:hover {
+    background-color: #1d4ed8;
+}
+
+/* Logged In User Pill */
+.nav_user_pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #e0f2fe;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #2563eb;
+    font-size: 14px;
+}
+
+.nav_user_avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #2563eb;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+}
+
+/* ==========================================
+   Browse Container & Sidebar/Main Layout
+   ========================================== */
+.browse_container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 24px;
+}
+
+.browse_grid {
+    display: flex;
+    gap: 30px;
+}
+
+/* Left Sidebar styling */
+.browse_sidebar {
+    flex: 1;
+    max-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sidebar_filter_card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar_filter_card h3 {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 10px;
+}
+
+.filter_list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filter_list li {
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.filter_list li:hover {
+    background-color: #f8fafc;
+    color: #2563eb;
+}
+
+.filter_list li.filter_active {
+    background-color: #e0f2fe;
+    color: #2563eb;
+}
+
+.badge {
+    background-color: #f1f5f9;
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.filter_list li.filter_active .badge {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+/* Rating Checkboxes styling */
+.rating_checkbox_group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 14px;
+    color: #475569;
+}
+
+.rating_checkbox_group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.rating_checkbox_group input {
+    cursor: pointer;
+}
+
+/* Right Main Area styling */
+.browse_main {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Search and Sort row styling */
+.search_sort_row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.search_bar_container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 6px 16px;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.search_icon {
+    font-size: 16px;
+    color: #94a3b8;
+}
+
+.search_bar_container input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 8px 10px;
+    font-size: 15px;
+    color: #334155;
+    background: transparent;
+}
+
+.sort_dropdown_container select {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+    outline: none;
+    cursor: pointer;
+}
+
+.found_count_row p {
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+/* ==========================================
+   Books Grid & Cards
+   ========================================== */
+.books_grid_browse {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.book_card_browse {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: calc(25% - 15px); /* 4 Columns */
+    min-width: 210px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #f1f5f9;
+    cursor: pointer;
+}
+
+.book_card_browse:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Book Cover Placeholder styling (Figma style) */
+.cover_placeholder {
+    aspect-ratio: 3/4;
+    border-radius: 8px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.book_avatar {
+    background-color: rgba(255, 255, 255, 0.25);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.book_cover_title {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.3;
+    margin-top: auto;
+    font-family: Georgia, serif;
+}
+
+.book_cover_author {
+    font-size: 11px;
+    opacity: 0.85;
+}
+
+.book_card_browse h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.3;
+    margin-top: 4px;
+    /* Truncate long titles */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.book_card_browse p {
+    font-size: 13px;
+    color: #64748b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card_category {
+    font-size: 10px;
+    font-weight: 700;
+    color: #2563eb;
+    letter-spacing: 0.5px;
+}
+
+.rating_row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+}
+
+.stars {
+    color: #fbbf24;
+}
+
+.rating_val {
+    font-weight: bold;
+    color: #475569;
+}
+
+.btn_read_card {
+    margin-top: 8px;
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn_read_card:hover {
+    background-color: #1d4ed8;
+}
+
+/* Gradients for placeholders */
+.grad_blue { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+.grad_purple { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+.grad_green { background: linear-gradient(135deg, #059669, #047857); }
+.grad_orange { background: linear-gradient(135deg, #ea580c, #c2410c); }
+.grad_teal { background: linear-gradient(135deg, #0d9488, #0f766e); }
+.grad_rose { background: linear-gradient(135deg, #f43f5e, #be123c); }
+.grad_dark { background: linear-gradient(135deg, #374151, #111827); }
+.grad_indigo { background: linear-gradient(135deg, #4f46e5, #3730a3); }
+.grad_brown { background: linear-gradient(135deg, #78350f, #451a03); }
+.grad_space { background: linear-gradient(135deg, #1e1b4b, #312e81); }
+
+/* ==========================================
+   Pagination component styling
+   ========================================== */
+.pagination_row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 40px;
+}
+
+.pag_btn {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pag_btn:hover:not(.disabled) {
+    background-color: #f1f5f9;
+    color: #2563eb;
+    border-color: #cbd5e1;
+}
+
+.pag_active {
+    background-color: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+}
+
+.pag_active:hover {
+    background-color: #1d4ed8;
+}
+
+.disabled {
+    color: #cbd5e1;
+    border-color: #e2e8f0;
+    cursor: not-allowed;
+    background-color: #f8fafc;
+}
+
+/* ==========================================
+   Footer Component
+   ========================================== */
+footer {
+    background-color: #0b1329;
+    color: #94a3b8;
+    padding: 60px 24px 30px;
+    margin-top: 80px;
+}
+
+.footer_top {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #1e293b;
+}
+
+.footer_column {
+    flex: 1;
+    min-width: 180px;
+}
+
+.footer_desc {
+    flex: 1.5;
+}
+
+.footer_desc .logo {
+    margin-bottom: 16px;
+}
+
+.text_white {
+    color: #ffffff;
+}
+
+.footer_desc p {
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 320px;
+}
+
+.footer_column h3 {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.footer_column ul {
+    list-style: none;
+}
+
+.footer_column ul li {
+    margin-bottom: 12px;
+}
+
+.footer_column ul li a {
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.footer_column ul li a:hover {
+    color: #ffffff;
+}
+
+.footer_bottom {
+    max-width: 1200px;
+    margin: 20px auto 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 13px;
+}
+
+.footer_bottom p {
+    margin: 0;
+}
+
+/* ==========================================
+   Responsive adjustments
+   ========================================== */
+@media (max-width: 992px) {
+    .book_card_browse {
+        width: calc(33.33% - 14px); /* 3 Columns */
+    }
+}
+
+@media (max-width: 768px) {
+    .browse_grid {
+        flex-direction: column;
+    }
+    .browse_sidebar {
+        max-width: 100%;
+    }
+    .book_card_browse {
+        width: calc(50% - 10px); /* 2 Columns */
+    }
+}
+
+@media (max-width: 480px) {
+    .book_card_browse {
+        width: 100%; /* 1 Column */
+    }
+    .search_sort_row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    .nav_links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

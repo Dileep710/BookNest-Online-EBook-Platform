@@ -1,0 +1,193 @@
+/* ==========================================
+   BookNest / ReadSphere - Login Stylesheet
+   Student Project Style
+   ========================================== */
+
+/* Global Reset & Body Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f8fafc;
+    color: #334155;
+    line-height: 1.5;
+}
+
+/* Page Wrapper Centered */
+.login_wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* Logo styling */
+.login_logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    cursor: pointer;
+}
+
+.logo_box {
+    background-color: #2563eb;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: sans-serif;
+}
+
+.logo_text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2563eb;
+    font-family: Georgia, serif;
+}
+
+/* Card Styling */
+.login_card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 40px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+    margin-bottom: 20px;
+}
+
+.login_card h2 {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: #0f172a;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.login_subtitle {
+    font-size: 14px;
+    color: #64748b;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Form Fields Styling */
+.form_group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form_group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.form_group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    color: #334155;
+    background-color: #ffffff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form_group input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Options Row (Checkbox & Forgot Password) */
+.form_options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+
+.remember_me {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #475569;
+    cursor: pointer;
+}
+
+.remember_me input {
+    cursor: pointer;
+}
+
+.forgot_password_link {
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.forgot_password_link:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+/* Submit Button */
+.login_btn_submit {
+    width: 100%;
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.login_btn_submit:hover {
+    background-color: #1d4ed8;
+}
+
+/* Redirect Footer */
+.login_footer {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 14px;
+    color: #64748b;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 20px;
+}
+
+.login_footer a {
+    color: #2563eb;
+    font-weight: 700;
+}
+
+.login_footer a:hover {
+    text-decoration: underline;
+}
+
+/* Back Link styling */
+.back_to_home {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    transition: color 0.2s;
+}
+
+.back_to_home:hover {
+    color: #2563eb;
+}

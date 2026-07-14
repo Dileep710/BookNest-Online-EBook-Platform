@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading History - BookNest</title>
+    <link rel="stylesheet" href="../css/history.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo" onclick="window.location.href='../index.html'">
+                <span class="logo_box">R</span>
+                <span class="logo_text">BookNest</span>
+            </div>
+            <ul class="nav_links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="browse-books.html">Browse</a></li>
+                <li><a href="history.html" class="active_pill">History</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main History Container -->
+    <main class="history_container">
+        
+        <div class="history_card">
+            <div class="history_header">
+                <div>
+                    <h2>Reading History</h2>
+                    <p class="history_subtitle">Track your digital reading progress and re-read books anytime.</p>
+                </div>
+                <button id="btnClearHistory" class="btn_clear_history">Clear History</button>
+            </div>
+
+            <!-- Reading History Table -->
+            <div class="table_responsive">
+                <table class="history_table">
+                    <thead>
+                        <tr>
+                            <th>Book Cover</th>
+                            <th>Book Details</th>
+                            <th>Category</th>
+                            <th>Last Accessed</th>
+                            <th>Progress</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody">
+                        <!-- Dummy Rows Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer_top">
+            <div class="footer_column footer_desc">
+                <div class="logo">
+                    <span class="logo_box">R</span>
+                    <span class="logo_text text_white">BookNest</span>
+                </div>
+                <p>Your premium destination for digital reading. Discover thousands of books across every genre, from anywhere.</p>
+            </div>
+            <div class="footer_column">
+                <h3>Platform</h3>
+                <ul>
+                    <li><a href="browse-books.html">Browse Books</a></li>
+                    <li><a href="browse-books.html">Categories</a></li>
+                    <li><a href="#">Trending</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <p>&copy; 2026 BookNest. All rights reserved. Built for Java Full Stack Development Project.</p>
+            <p>Made with &hearts; for book lovers everywhere.</p>
+        </div>
+    </footer>
+
+    <script src="../js/api-patch.js"></script>
+    <script src="../js/history.js"></script>
+</body>
+</html>

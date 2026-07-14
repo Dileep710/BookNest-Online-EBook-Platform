@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - BookNest</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+
+    <!-- Main Container -->
+    <div class="login_wrapper">
+        <!-- Logo centered above card -->
+        <div class="login_logo" onclick="window.location.href='../index.html'">
+            <span class="logo_box">B</span>
+            <span class="logo_text">BookNest</span>
+        </div>
+
+        <!-- Login Card -->
+        <div class="login_card">
+            <h2>Login to your account</h2>
+            <p class="login_subtitle">Welcome back! Please enter your credentials to login.</p>
+
+            <!-- Form -->
+            <form id="loginForm">
+                <!-- Role Field -->
+                <div class="form_group">
+                    <label for="role">Login As</label>
+                    <select id="role" name="role" required style="width: 100%; padding: 10.5px; border: 1px solid #cbd5e1; border-radius: 6px; background-color: white; font-family: inherit; font-size: 14px; margin-bottom: 5px;">
+                        <option value="user">Student / User</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+                </div>
+
+                <!-- Email Field -->
+                <div class="form_group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form_group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password" required>
+                </div>
+
+                <!-- Options Row (Remember Me & Forgot Password) -->
+                <div class="form_options">
+                    <label class="remember_me">
+                        <input type="checkbox" name="remember"> Remember me
+                    </label>
+                    <a href="#" class="forgot_password_link">Forgot Password?</a>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="login_btn_submit">Login &rarr;</button>
+            </form>
+
+            <!-- Redirect Link -->
+            <div class="login_footer">
+                <p>Don't have an account? <a href="register.html">Register here</a></p>
+            </div>
+        </div>
+
+        <!-- Back to Home Link -->
+        <a href="../index.html" class="back_to_home">&larr; Back to Home</a>
+    </div>
+
+    <!-- JavaScript for validation -->
+    <script src="../js/api-patch.js"></script>
+    <script src="../js/login.js"></script>
+</body>
+</html>

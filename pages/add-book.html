@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book - BookNest Admin</title>
+    <link rel="stylesheet" href="../css/add-book.css">
+</head>
+<body>
+
+    <div class="admin_layout">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="admin_sidebar">
+            <div class="sidebar_logo">
+                <span class="logo_box_admin">A</span>
+                <span class="logo_text_admin">BookNest Admin</span>
+            </div>
+            
+            <nav class="sidebar_nav">
+                <ul>
+                    <li><a href="admin-dashboard.html" class="nav_item"><span class="nav_icon">&#128202;</span> Dashboard</a></li>
+                    <li><a href="manage-books.html" class="nav_item"><span class="nav_icon">&#128214;</span> Manage Books</a></li>
+                    <li><a href="add-book.html" class="nav_item active"><span class="nav_icon">&#128229;</span> Add Book</a></li>
+                    <li><a href="manage-users.html" class="nav_item"><span class="nav_icon">&#128101;</span> Manage Users</a></li>
+                    <li class="nav_divider"></li>
+                    <li><a href="../index.html" class="nav_item"><span class="nav_icon">&#128100;</span> Go to User Site</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin_main_content">
+            
+            <!-- Admin Topbar Header -->
+            <header class="admin_header">
+                <div class="header_title_block">
+                    <h2>Add Ebook</h2>
+                    <p class="header_date">Upload new titles to the digital library catalogue</p>
+                </div>
+                <div class="admin_profile_indicator">
+                    <div class="admin_avatar">SA</div>
+                    <span>System Admin</span>
+                </div>
+            </header>
+
+            <!-- Add Book Form Card -->
+            <section class="admin_section">
+                <div class="form_card_admin">
+                    <h3>Book Metadata</h3>
+                    <p class="section_subtitle_admin">Fill in all fields to add a new ebook. PDFs will be stored in library files.</p>
+                    
+                    <form id="addBookForm">
+                        <div class="form_grid_two">
+                            <!-- Title -->
+                            <div class="form_group">
+                                <label for="bookTitle">Book Title *</label>
+                                <input type="text" id="bookTitle" placeholder="e.g. Design Patterns" required>
+                            </div>
+                            <!-- Author -->
+                            <div class="form_group">
+                                <label for="bookAuthor">Author Name *</label>
+                                <input type="text" id="bookAuthor" placeholder="e.g. Erich Gamma" required>
+                            </div>
+                        </div>
+
+                        <div class="form_grid_two">
+                            <!-- Category -->
+                            <div class="form_group">
+                                <label for="bookCategory">Category / Genre *</label>
+                                <select id="bookCategory" required>
+                                    <option value="" disabled selected>Select Category</option>
+                                    <option value="Programming">Programming</option>
+                                    <option value="Technology">Technology</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Science">Science</option>
+                                    <option value="AI">AI</option>
+                                    <option value="History">History</option>
+                                    <option value="Novel">Novel</option>
+                                </select>
+                            </div>
+                            <!-- Cover Theme Gradient -->
+                            <div class="form_group">
+                                <label for="bookCoverClass">Cover Theme Accent *</label>
+                                <select id="bookCoverClass" required>
+                                    <option value="grad_blue">Blue Gradient</option>
+                                    <option value="grad_purple">Purple Gradient</option>
+                                    <option value="grad_green">Green Gradient</option>
+                                    <option value="grad_orange">Orange Gradient</option>
+                                    <option value="grad_teal">Teal Gradient</option>
+                                    <option value="grad_rose">Rose Gradient</option>
+                                    <option value="grad_dark">Dark Gray Gradient</option>
+                                    <option value="grad_indigo">Indigo Gradient</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form_grid_two">
+                            <!-- Rating -->
+                            <div class="form_group">
+                                <label for="bookRating">Average Rating (1.0 to 5.0) *</label>
+                                <input type="number" id="bookRating" min="1.0" max="5.0" step="0.1" value="4.5" required>
+                            </div>
+                            <!-- Pages -->
+                            <div class="form_group">
+                                <label for="bookPages">Page Count *</label>
+                                <input type="number" id="bookPages" min="1" placeholder="e.g. 384" required>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="form_group">
+                            <label for="bookDesc">Ebook Summary / Description *</label>
+                            <textarea id="bookDesc" rows="5" placeholder="Enter a comprehensive description of the ebook details..." required></textarea>
+                        </div>
+
+                        <div class="form_grid_two">
+                            <!-- PDF Upload -->
+                            <div class="form_group">
+                                <label for="bookPdfFile">Select PDF File *</label>
+                                <input type="file" id="bookPdfFile" accept="application/pdf" required>
+                            </div>
+                            <!-- Cover Image Upload -->
+                            <div class="form_group">
+                                <label for="bookCoverFile">Select Cover Image (Optional)</label>
+                                <input type="file" id="bookCoverFile" accept="image/*">
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn_submit_add">Upload Ebook to Database</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Admin Footer -->
+            <footer class="admin_footer">
+                <p>&copy; 2026 BookNest Administration. Built for College Engineering Project.</p>
+            </footer>
+
+        </main>
+        
+    </div>
+
+    <script src="../js/api-patch.js"></script>
+    <script src="../js/add-book.js"></script>
+</body>
+</html>

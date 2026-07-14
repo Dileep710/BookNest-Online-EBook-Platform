@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - BookNest</title>
+    <link rel="stylesheet" href="../css/admin-login.css">
+</head>
+<body>
+
+    <!-- Main Container -->
+    <div class="login_wrapper">
+        <!-- Logo centered above card -->
+        <div class="login_logo" onclick="window.location.href='../index.html'">
+            <span class="logo_box">A</span>
+            <span class="logo_text">BookNest Admin</span>
+        </div>
+
+        <!-- Login Card -->
+        <div class="login_card">
+            <h2>Admin Portal</h2>
+            <p class="login_subtitle">Please enter your administrator credentials to login.</p>
+
+            <!-- Form -->
+            <form id="adminLoginForm">
+                <!-- Username Field -->
+                <div class="form_group">
+                    <label for="adminUsername">Username</label>
+                    <input type="text" id="adminUsername" placeholder="admin" required>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form_group">
+                    <label for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" placeholder="••••••••" required>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="login_btn_submit">Login as Admin &rarr;</button>
+            </form>
+
+            <!-- Redirect Link -->
+            <div class="login_footer">
+                <p>Not an administrator? <a href="login.html">Regular User Login</a></p>
+            </div>
+        </div>
+
+        <!-- Back to Home Link -->
+        <a href="../index.html" class="back_to_home">&larr; Back to Home</a>
+    </div>
+
+    <script src="../js/api-patch.js"></script>
+    <script src="../js/admin-login.js"></script>
+</body>
+</html>

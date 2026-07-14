@@ -1,0 +1,845 @@
+/* ==========================================
+   BookNest / ReadSphere - Stylesheet
+   Student Project Style
+   ========================================== */
+
+/* Global Reset & Body Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f8fafc;
+    color: #334155;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Typography styles for student evaluation */
+h1, h2, h3, .logo_text, .cta_content h2, .details_book_title {
+    font-family: Georgia, serif;
+    color: #0f172a;
+}
+
+/* ==========================================
+   Header & Navigation
+   ========================================== */
+header {
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 24px;
+}
+
+/* Logo styling */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.logo_box {
+    background-color: #2563eb;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: sans-serif;
+}
+
+.logo_text {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+/* Navigation Links */
+.nav_links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav_links a {
+    font-size: 15px;
+    font-weight: 500;
+    color: #475569;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav_links a:hover {
+    color: #2563eb;
+    background-color: #f1f5f9;
+}
+
+.nav_links a.active_pill {
+    background-color: #e0f2fe;
+    color: #2563eb;
+}
+
+/* Navigation Buttons */
+.nav_buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.login_btn {
+    font-size: 15px;
+    font-weight: 500;
+    color: #475569;
+    padding: 8px 16px;
+}
+
+.login_btn:hover {
+    color: #2563eb;
+}
+
+.register_btn_nav {
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.register_btn_nav:hover {
+    background-color: #1d4ed8;
+}
+
+/* ==========================================
+   Hero Landing Section
+   ========================================== */
+.hero_landing {
+    display: flex;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 40px 24px;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero_landing_left {
+    flex: 1;
+}
+
+.badge_hero_landing_left {
+    display: inline-block;
+    background-color: #dcfce7;
+    color: #15803d;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.hero_landing_left h1 {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.highlight_text {
+    color: #06b6d4;
+}
+
+.hero_landing_left p {
+    font-size: 16px;
+    color: #64748b;
+    margin-bottom: 30px;
+    max-width: 500px;
+}
+
+/* Search bar on landing */
+.search_box_landing {
+    display: flex;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 4px;
+    max-width: 480px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.search_box_landing input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    font-size: 15px;
+    color: #334155;
+    background: transparent;
+}
+
+.search_box_landing button {
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.search_box_landing button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Actions buttons below search */
+.below_search_books {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.below_search_books button {
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.bsb_primary_btn {
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+}
+
+.bsb_primary_btn:hover {
+    background-color: #1d4ed8;
+}
+
+.bsb_secondary_btn {
+    background-color: transparent;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+}
+
+.bsb_secondary_btn:hover {
+    background-color: #f1f5f9;
+}
+
+/* Statistics Counter Row */
+.statistics_row {
+    display: flex;
+    gap: 30px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 24px;
+}
+
+.stat_item h3 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.stat_item p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Hero Landing Right Side (Featured Highlight) */
+.hero_landing_right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.featured_holder {
+    background-color: #1e3a8a;
+    background-image: radial-gradient(circle at top right, #1d4ed8, #1e3a8a);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    position: relative;
+    max-width: 380px;
+    width: 100%;
+}
+
+.featured_tag {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    background-color: #3b82f6;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================
+   Book Card Components
+   ========================================== */
+.book_card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #f1f5f9;
+}
+
+.book_card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.book_image {
+    aspect-ratio: 3/4;
+    border-radius: 8px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.book_avatar {
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.book_cover_title {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.3;
+    margin-top: auto;
+}
+
+.book_cover_author {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.book_card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.3;
+    margin-top: 4px;
+}
+
+.book_card p {
+    font-size: 14px;
+    color: #64748b;
+}
+
+/* Dynamic covers style */
+.cover_atomic_habits {
+    background: linear-gradient(135deg, #0d9488, #0f766e);
+}
+.cover_clean_code {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+.cover_pragmatic {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+}
+.cover_dune {
+    background: linear-gradient(135deg, #ea580c, #c2410c);
+}
+.cover_sapiens {
+    background: linear-gradient(135deg, #78350f, #451a03);
+}
+.cover_design_patterns {
+    background: linear-gradient(135deg, #059669, #047857);
+}
+.cover_1984 {
+    background: linear-gradient(135deg, #374151, #1f2937);
+}
+.cover_deep_work {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+}
+.cover_gatsby {
+    background: linear-gradient(135deg, #b45309, #78350f);
+}
+
+/* Ratings component styling */
+.rating_stars {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #fbbf24;
+    font-size: 14px;
+}
+
+.rating_num {
+    color: #475569;
+    font-weight: bold;
+    margin-left: 2px;
+}
+
+.book_card_category {
+    font-size: 11px;
+    font-weight: 700;
+    color: #2563eb;
+    letter-spacing: 0.5px;
+}
+
+.book_card_meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.reviews_pages {
+    font-size: 12px !important;
+    color: #94a3b8 !important;
+}
+
+/* Buttons in book cards */
+.btn_start_reading, .btn_read_now {
+    width: 100%;
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn_start_reading:hover, .btn_read_now:hover {
+    background-color: #1d4ed8;
+}
+
+/* ==========================================
+   Section Layouts & General Components
+   ========================================== */
+.section_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+}
+
+.section_header_centered {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section_badge {
+    display: inline-block;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.section_header h2, .section_header_centered h2 {
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.view_all_link {
+    color: #2563eb;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.view_all_link:hover {
+    color: #1d4ed8;
+}
+
+/* ==========================================
+   Categories Section
+   ========================================== */
+.categories_section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 24px;
+}
+
+.categories_row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.category_card {
+    flex: 1;
+    min-width: 160px;
+    padding: 24px 16px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #f1f5f9;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.category_card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.cat_icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.category_card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-family: system-ui, sans-serif;
+}
+
+.category_card p {
+    font-size: 13px;
+    color: #64748b;
+}
+
+/* Pastel backgrounds for categories */
+.cat_programming { background-color: #eff6ff; border-color: #dbeafe; color: #1e40af; }
+.cat_technology { background-color: #f0fdf4; border-color: #dcfce7; color: #166534; }
+.cat_fiction { background-color: #faf5ff; border-color: #f3e8ff; color: #6b21a8; }
+.cat_business { background-color: #fff7ed; border-color: #ffedd5; color: #9a3412; }
+.cat_science { background-color: #eef2ff; border-color: #e0e7ff; color: #3730a3; }
+.cat_history { background-color: #fff1f2; border-color: #ffe4e6; color: #9f1239; }
+
+/* ==========================================
+   Trending Books Section
+   ========================================== */
+.trending_section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 24px;
+}
+
+.books_grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.trending_section .book_card {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* ==========================================
+   Recently Added Section
+   ========================================== */
+.recently_added_section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 24px;
+}
+
+.books_grid_recently {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.recently_added_section .book_card {
+    flex: 1;
+    min-width: 220px;
+}
+
+/* ==========================================
+   Featured Authors Section
+   ========================================== */
+.authors_section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 24px;
+}
+
+.authors_row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.author_card {
+    flex: 1;
+    min-width: 160px;
+    background-color: #ffffff;
+    padding: 24px 16px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.author_avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Color palettes for authors avatars */
+.auth_blue { background-color: #3b82f6; }
+.auth_purple { background-color: #8b5cf6; }
+.auth_teal { background-color: #14b8a6; }
+.auth_indigo { background-color: #6366f1; }
+.auth_gray { background-color: #64748b; }
+.auth_orange { background-color: #f97316; }
+
+.author_card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #0f172a;
+}
+
+.author_card p {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 12px;
+}
+
+.author_books_link {
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.author_books_link:hover {
+    color: #1d4ed8;
+}
+
+/* ==========================================
+   Call To Action (CTA) Section
+   ========================================== */
+.cta_section {
+    max-width: 1200px;
+    margin: 65px auto;
+    padding: 0 24px;
+}
+
+.cta_container {
+    background-color: #2563eb;
+    background-image: linear-gradient(135deg, #1d4ed8, #2563eb);
+    padding: 48px 40px;
+    border-radius: 16px;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.cta_content h2 {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.cta_content p {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.cta_buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.cta_btn_primary {
+    background-color: #ffffff;
+    color: #2563eb;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: background-color 0.2s;
+}
+
+.cta_btn_primary:hover {
+    background-color: #f8fafc;
+}
+
+.cta_btn_secondary {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.cta_btn_secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+}
+
+/* ==========================================
+   Footer Component
+   ========================================== */
+footer {
+    background-color: #0b1329;
+    color: #94a3b8;
+    padding: 60px 24px 30px;
+    margin-top: 80px;
+}
+
+.footer_top {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #1e293b;
+}
+
+.footer_column {
+    flex: 1;
+    min-width: 180px;
+}
+
+.footer_desc {
+    flex: 1.5;
+}
+
+.footer_desc .logo {
+    margin-bottom: 16px;
+}
+
+.text_white {
+    color: #ffffff;
+}
+
+.footer_desc p {
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 320px;
+}
+
+.footer_column h3 {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.footer_column ul {
+    list-style: none;
+}
+
+.footer_column ul li {
+    margin-bottom: 12px;
+}
+
+.footer_column ul li a {
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.footer_column ul li a:hover {
+    color: #ffffff;
+}
+
+.footer_bottom {
+    max-width: 1200px;
+    margin: 20px auto 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 13px;
+}
+
+.footer_bottom p {
+    margin: 0;
+}
+
+/* ==========================================
+   Responsive adjustments
+   ========================================== */
+@media (max-width: 768px) {
+    .hero_landing {
+        flex-direction: column;
+        margin: 20px auto;
+    }
+    
+    .hero_landing_left h1 {
+        font-size: 36px;
+    }
+    
+    .hero_landing_right {
+        width: 100%;
+    }
+    
+    .cta_container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px 24px;
+    }
+    
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .nav_links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

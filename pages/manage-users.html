@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users - BookNest Admin</title>
+    <link rel="stylesheet" href="../css/manage-books.css">
+    <style>
+        /* Custom modal tweaks for displaying user details */
+        .user_details_grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .user_details_item h5 {
+            margin: 0 0 5px 0;
+            color: #64748b;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .user_details_item p {
+            margin: 0;
+            color: #1e293b;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .user_history_title {
+            margin: 20px 0 10px 0;
+            color: #1e293b;
+            font-size: 16px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 5px;
+        }
+        .history_table_container {
+            max-height: 250px;
+            overflow-y: auto;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+        }
+        .history_table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .history_table th, .history_table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .history_table th {
+            background-color: #f1f5f9;
+            color: #475569;
+            position: sticky;
+            top: 0;
+        }
+        .modal_card {
+            width: 90%;
+            max-width: 650px;
+        }
+        .btn_view {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            margin-right: 5px;
+            transition: background-color 0.2s;
+        }
+        .btn_view:hover {
+            background-color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Admin Panel Layout -->
+    <div class="admin_layout">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="admin_sidebar">
+            <div class="sidebar_logo">
+                <span class="logo_box_admin">A</span>
+                <span class="logo_text_admin">BookNest Admin</span>
+            </div>
+            
+            <nav class="sidebar_nav">
+                <ul>
+                    <li><a href="admin-dashboard.html" class="nav_item"><span class="nav_icon">&#128202;</span> Dashboard</a></li>
+                    <li><a href="manage-books.html" class="nav_item"><span class="nav_icon">&#128214;</span> Manage Books</a></li>
+                    <li><a href="add-book.html" class="nav_item"><span class="nav_icon">&#128229;</span> Add Book</a></li>
+                    <li><a href="manage-users.html" class="nav_item active"><span class="nav_icon">&#128101;</span> Manage Users</a></li>
+                    <li class="nav_divider"></li>
+                    <li><a href="../index.html" class="nav_item"><span class="nav_icon">&#128100;</span> Go to User Site</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin_main_content">
+            
+            <!-- Admin Topbar Header -->
+            <header class="admin_header">
+                <div class="header_title_block">
+                    <h2>Manage Users</h2>
+                    <p class="header_date">View registered students, check reading history, or delete user accounts</p>
+                </div>
+                <div class="admin_profile_indicator">
+                    <div class="admin_avatar">SA</div>
+                    <span>System Admin</span>
+                </div>
+            </header>
+
+            <!-- Users Catalogue Section -->
+            <section class="admin_section">
+                <div class="catalogue_card">
+                    
+                    <!-- Search Row -->
+                    <div class="table_controls_row">
+                        <div class="search_input_wrapper" style="flex: 1;">
+                            <span class="search_icon">&#128269;</span>
+                            <input type="text" id="userSearchInput" placeholder="Search users by name or email...">
+                        </div>
+                    </div>
+
+                    <!-- Users Management Table -->
+                    <div class="table_container_admin">
+                        <table class="admin_table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Genre Preference</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminUsersTableBody">
+                                <!-- Loaded dynamically via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Admin Footer -->
+            <footer class="admin_footer">
+                <p>&copy; 2026 BookNest Administration. Built for College Engineering Project.</p>
+            </footer>
+
+        </main>
+        
+    </div>
+
+    <!-- User Details Modal (Hidden by Default) -->
+    <div id="userDetailsModal" class="modal_overlay">
+        <div class="modal_card">
+            <div class="modal_header">
+                <h3>User Profile Details</h3>
+                <span class="btn_close_modal" id="btnCloseUserModal">&times;</span>
+            </div>
+            
+            <div class="modal_body" style="padding: 20px;">
+                <!-- Profile details -->
+                <div class="user_details_grid">
+                    <div class="user_details_item">
+                        <h5>Full Name</h5>
+                        <p id="detFullName">-</p>
+                    </div>
+                    <div class="user_details_item">
+                        <h5>Email Address</h5>
+                        <p id="detEmail">-</p>
+                    </div>
+                    <div class="user_details_item">
+                        <h5>Phone Number</h5>
+                        <p id="detPhone">-</p>
+                    </div>
+                    <div class="user_details_item">
+                        <h5>Favorite Genre</h5>
+                        <p id="detGenre">-</p>
+                    </div>
+                </div>
+
+                <!-- Reading History Title -->
+                <h4 class="user_history_title">📚 Reading History</h4>
+
+                <!-- Reading History List -->
+                <div class="history_table_container">
+                    <table class="history_table">
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Author</th>
+                                <th>Category</th>
+                                <th>Current Page</th>
+                                <th>Last Read</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userHistoryTableBody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/api-patch.js"></script>
+    <script src="../js/manage-users.js"></script>
+</body>
+</html>

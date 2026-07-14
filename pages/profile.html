@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - BookNest</title>
+    <link rel="stylesheet" href="../css/profile.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo" onclick="window.location.href='../index.html'">
+                <span class="logo_box">R</span>
+                <span class="logo_text">BookNest</span>
+            </div>
+            <ul class="nav_links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="browse-books.html">Browse</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a href="profile.html" class="active_pill">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Profile Container -->
+    <main class="profile_container">
+        
+        <!-- Grid Layout -->
+        <div class="profile_grid">
+            
+            <!-- Left Side: Profile Avatar Card -->
+            <div class="profile_sidebar">
+                <div class="profile_card avatar_card">
+                    <div class="profile_avatar_large">JD</div>
+                    <h2 id="profileNameDisplay">John Doe</h2>
+                    <p class="profile_role">Library Member</p>
+                    <p class="profile_joined">Joined June 2026</p>
+                    
+                    <div class="profile_divider"></div>
+                    
+                    <div class="profile_quick_stats">
+                        <div class="stat_box">
+                            <span class="stat_num">15</span>
+                            <span class="stat_lbl">Books Read</span>
+                        </div>
+                        <div class="stat_box">
+                            <span class="stat_num">3</span>
+                            <span class="stat_lbl">In Progress</span>
+                        </div>
+                    </div>
+
+                    <div class="profile_divider"></div>
+                    
+                    <button id="profileLogoutBtn" style="width: 100%; padding: 12px; background-color: #ef4444; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background-color 0.2s ease; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        <span>&#128682;</span> Logout
+                    </button>
+                    <style>
+                        #profileLogoutBtn:hover {
+                            background-color: #dc2626 !important;
+                        }
+                    </style>
+                </div>
+            </div>
+
+            <!-- Right Side: Edit Form Card -->
+            <div class="profile_main">
+                <div class="profile_card form_card">
+                    <h3>Account Information</h3>
+                    <p class="section_subtitle">Update your personal details and platform preferences</p>
+                    
+                    <form id="profileForm">
+                        <div class="form_grid_two">
+                            <!-- Full Name -->
+                            <div class="form_group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" value="John Doe" required>
+                            </div>
+                            
+                            <!-- Email -->
+                            <div class="form_group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" value="john.doe@college.edu" required>
+                            </div>
+                        </div>
+
+                        <div class="form_grid_two">
+                            <!-- New Password -->
+                            <div class="form_group">
+                                <label for="newPassword">New Password (Leave blank to keep current)</label>
+                                <input type="password" id="newPassword" placeholder="••••••••">
+                            </div>
+                            
+                            <!-- Confirm New Password -->
+                            <div class="form_group">
+                                <label for="confirmNewPassword">Confirm New Password</label>
+                                <input type="password" id="confirmNewPassword" placeholder="••••••••">
+                            </div>
+                        </div>
+
+                        <div class="form_grid_two">
+                            <!-- Contact Number -->
+                            <div class="form_group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" value="+1 (555) 019-2834">
+                            </div>
+                            
+                            <!-- Student ID -->
+                            <div class="form_group">
+                                <label for="studentId">Student ID / Roll No</label>
+                                <input type="text" id="studentId" value="CS-2023-8849" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form_group">
+                            <label for="college">College / University</label>
+                            <input type="text" id="college" value="State Engineering College" readonly>
+                        </div>
+
+                        <div class="profile_divider"></div>
+
+                        <h3>Reading Preferences</h3>
+                        
+                        <div class="form_grid_two">
+                            <!-- Favorite Genre -->
+                            <div class="form_group">
+                                <label for="favGenre">Favorite Genre</label>
+                                <select id="favGenre">
+                                    <option value="Programming" selected>Programming & Coding</option>
+                                    <option value="Technology">Technology & Science</option>
+                                    <option value="Business">Business & Leadership</option>
+                                    <option value="Fiction">Fiction & Novels</option>
+                                    <option value="History">History & Science</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Newsletter -->
+                            <div class="form_group">
+                                <label for="notifications">Email Notifications</label>
+                                <select id="notifications">
+                                    <option value="all">All Updates & Recommendations</option>
+                                    <option value="critical">Only Reading Activity</option>
+                                    <option value="none">Disabled</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Save Button -->
+                        <button type="submit" class="btn_save_profile">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer_top">
+            <div class="footer_column footer_desc">
+                <div class="logo">
+                    <span class="logo_box">R</span>
+                    <span class="logo_text text_white">BookNest</span>
+                </div>
+                <p>Your premium destination for digital reading. Discover thousands of books across every genre, from anywhere.</p>
+            </div>
+            <div class="footer_column">
+                <h3>Platform</h3>
+                <ul>
+                    <li><a href="browse-books.html">Browse Books</a></li>
+                    <li><a href="browse-books.html">Categories</a></li>
+                    <li><a href="#">Trending</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <p>&copy; 2026 BookNest. All rights reserved. Built for Java Full Stack Development Project.</p>
+            <p>Made with &hearts; for book lovers everywhere.</p>
+        </div>
+    </footer>
+
+    <script src="../js/api-patch.js?v=2"></script>
+    <script src="../js/profile.js?v=2"></script>
+</body>
+</html>

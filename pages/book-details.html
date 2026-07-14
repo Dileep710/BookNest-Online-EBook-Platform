@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details - BookNest</title>
+    <link rel="stylesheet" href="../css/book-details.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo" onclick="window.location.href='../index.html'">
+                <span class="logo_box">R</span>
+                <span class="logo_text">BookNest</span>
+            </div>
+            <ul class="nav_links">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="browse-books.html">Browse</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="details_container">
+        
+        <!-- Book Details Content Grid -->
+        <div class="details_grid">
+            
+            <!-- Left Side: Cover and Action -->
+            <div class="details_sidebar">
+                <div class="details_cover_wrapper">
+                    <div id="detailsBookCover" class="large_cover cover_clean_code">
+                        <span id="detailsBookAvatar" class="book_avatar_large">CC</span>
+                        <div id="detailsBookCoverTitle" class="book_cover_title_large">Clean Code</div>
+                        <div id="detailsBookCoverAuthor" class="book_cover_author_large">Robert C. Martin</div>
+                    </div>
+                </div>
+                <button id="btnReadNowDetails" class="btn_read_now_large">Read Now</button>
+                <button id="btnFavoriteDetails" class="btn_favorite_large" style="margin-top: 10px; width: 100%; padding: 12px; background-color: transparent; color: #2563eb; border: 2px solid #2563eb; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s;">
+                    <span class="heart_icon">&#9825;</span> Add to Favorites
+                </button>
+            </div>
+
+            <!-- Right Side: Details Info -->
+            <div class="details_info">
+                <span id="detailsCategory" class="details_category_badge">PROGRAMMING</span>
+                <h1 id="detailsTitle" class="details_book_title">Clean Code</h1>
+                <p id="detailsAuthor" class="details_book_author">by Robert C. Martin</p>
+                
+                <div class="details_rating_row">
+                    <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                    <span id="detailsRating" class="rating_val_details">4.8 Stars</span>
+                    <span class="reviews_count">(3,240 reviews)</span>
+                </div>
+
+                <div class="details_divider"></div>
+
+                <h3>Description</h3>
+                <p id="detailsDescription" class="details_description_text">
+                    Even bad code can function. But if code isn't clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn't have to be that way. 
+                    Noted software expert Robert C. Martin presents a revolutionary paradigm with Clean Code: A Handbook of Agile Software Craftsmanship. Martin has teamed up with his colleagues from Object Mentor to distill their best agile practice of cleaning code "on the fly" into a book that will instill within you the values of a software craftsman.
+                </p>
+
+                <div class="details_meta_grid">
+                    <div class="meta_item">
+                        <span class="meta_label">Format</span>
+                        <span class="meta_value">PDF / eBook</span>
+                    </div>
+                    <div class="meta_item">
+                        <span class="meta_label">Pages</span>
+                        <span id="detailsPages" class="meta_value">431 Pages</span>
+                    </div>
+                    <div class="meta_item">
+                        <span class="meta_label">Language</span>
+                        <span class="meta_value">English</span>
+                    </div>
+                    <div class="meta_item">
+                        <span class="meta_label">Publisher</span>
+                        <span class="meta_value">Prentice Hall</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Related Books Section -->
+        <section class="related_books_section">
+            <h2 class="section_title">Related Books</h2>
+            <div class="related_books_grid" id="relatedBooksGrid">
+                <!-- Related book cards populated by JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer_top">
+            <div class="footer_column footer_desc">
+                <div class="logo">
+                    <span class="logo_box">R</span>
+                    <span class="logo_text text_white">BookNest</span>
+                </div>
+                <p>Your premium destination for digital reading. Discover thousands of books across every genre, from anywhere.</p>
+            </div>
+            <div class="footer_column">
+                <h3>Platform</h3>
+                <ul>
+                    <li><a href="browse-books.html">Browse Books</a></li>
+                    <li><a href="browse-books.html">Categories</a></li>
+                    <li><a href="#">Trending</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <p>&copy; 2026 BookNest. All rights reserved. Built for Java Full Stack Development Project.</p>
+            <p>Made with &hearts; for book lovers everywhere.</p>
+        </div>
+    </footer>
+
+    <script src="../js/api-patch.js"></script>
+    <script src="../js/book-details.js"></script>
+</body>
+</html>

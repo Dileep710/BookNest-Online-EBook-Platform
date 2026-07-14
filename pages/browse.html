@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Books - BookNest</title>
+    <link rel="stylesheet" href="../css/browse.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo" onclick="window.location.href='../index.html'">
+                <span class="logo_box">B</span>
+                <span class="logo_text">BookNest</span>
+            </div>
+            <ul class="nav_links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="browse.html" class="active_pill">Categories</a></li>
+                <li><a href="browse.html">Explore</a></li>
+            </ul>
+            <!-- Auth Buttons (will be toggled via JS based on session) -->
+            <div class="nav_buttons" id="navAuthButtons">
+                <a href="login.html" class="login_btn">Login</a>
+                <a href="register.html" class="register_btn_nav">Register</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="browse_container">
+        
+        <!-- Two Column Layout -->
+        <div class="browse_grid">
+            
+            <!-- Left Sidebar (Category & Rating Filters) -->
+            <aside class="browse_sidebar">
+                <!-- Categories Card -->
+                <div class="sidebar_filter_card">
+                    <h3>Categories</h3>
+                    <ul class="filter_list" id="categoryFilterList">
+                        <li class="filter_active" data-category="All">All Books <span class="badge">20</span></li>
+                        <li data-category="Programming">Programming <span class="badge">5</span></li>
+                        <li data-category="Technology">Technology <span class="badge">1</span></li>
+                        <li data-category="Business">Business <span class="badge">5</span></li>
+                        <li data-category="Science">Science <span class="badge">2</span></li>
+                        <li data-category="AI">AI <span class="badge">3</span></li>
+                        <li data-category="History">History <span class="badge">2</span></li>
+                        <li data-category="Novel">Novel <span class="badge">2</span></li>
+                    </ul>
+                </div>
+
+                <!-- Rating Filters Card -->
+                <div class="sidebar_filter_card">
+                    <h3>Rating</h3>
+                    <div class="rating_checkbox_group">
+                        <label><input type="checkbox" name="rating_filter" value="4.5" checked> 4.5+ Stars</label>
+                        <label><input type="checkbox" name="rating_filter" value="4.0"> 4.0+ Stars</label>
+                        <label><input type="checkbox" name="rating_filter" value="3.0"> 3.0+ Stars</label>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Right Main Area (Search & Books Grid) -->
+            <section class="browse_main">
+                <!-- Search Bar Area -->
+                <div class="search_sort_row">
+                    <div class="search_bar_container">
+                        <span class="search_icon">&#128269;</span>
+                        <input type="text" id="bookSearchInput" placeholder="Search by title, author, or category...">
+                    </div>
+                    <div class="sort_dropdown_container">
+                        <select id="sortSelect">
+                            <option value="relevance">Relevance</option>
+                            <option value="rating">Top Rated</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Found count -->
+                <div class="found_count_row">
+                    <p id="booksFoundText">20 books found</p>
+                </div>
+
+                <!-- Books Grid -->
+                <div class="books_grid_browse" id="booksGrid">
+                    <!-- Cards will be populated and filtered dynamically via JS -->
+                </div>
+
+                <!-- Static Pagination UI -->
+                <div class="pagination_row">
+                    <button class="pag_btn pag_prev disabled">&larr; Previous</button>
+                    <button class="pag_btn pag_num pag_active">1</button>
+                    <button class="pag_btn pag_num">2</button>
+                    <button class="pag_btn pag_num">3</button>
+                    <button class="pag_btn pag_next">Next &rarr;</button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer_top">
+            <div class="footer_column footer_desc">
+                <div class="logo">
+                    <span class="logo_box">B</span>
+                    <span class="logo_text text_white">BookNest</span>
+                </div>
+                <p>Your premium destination for digital reading. Discover thousands of books across every genre, from anywhere.</p>
+            </div>
+            <div class="footer_column">
+                <h3>Platform</h3>
+                <ul>
+                    <li><a href="browse.html">Browse Books</a></li>
+                    <li><a href="browse.html">Categories</a></li>
+                    <li><a href="#">Trending</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <p>&copy; 2026 BookNest. All rights reserved. Built for Java Full Stack Development Project.</p>
+            <p>Made with &hearts; for book lovers everywhere.</p>
+        </div>
+    </footer>
+
+    <!-- Script file link -->
+    <script src="../js/api-patch.js"></script>
+    <script src="../js/browse.js"></script>
+</body>
+</html>

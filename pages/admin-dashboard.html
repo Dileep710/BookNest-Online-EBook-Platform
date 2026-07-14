@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - BookNest</title>
+    <link rel="stylesheet" href="../css/admin-dashboard.css">
+</head>
+<body>
+
+    <!-- Admin Panel Layout -->
+    <div class="admin_layout">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="admin_sidebar">
+            <div class="sidebar_logo">
+                <span class="logo_box_admin">A</span>
+                <span class="logo_text_admin">BookNest Admin</span>
+            </div>
+            
+            <nav class="sidebar_nav">
+                <ul>
+                    <li><a href="admin-dashboard.html" class="nav_item active"><span class="nav_icon">&#128202;</span> Dashboard</a></li>
+                    <li><a href="manage-books.html" class="nav_item"><span class="nav_icon">&#128214;</span> Manage Books</a></li>
+                    <li><a href="add-book.html" class="nav_item"><span class="nav_icon">&#128229;</span> Add Book</a></li>
+                    <li><a href="manage-users.html" class="nav_item"><span class="nav_icon">&#128101;</span> Manage Users</a></li>
+                    <li class="nav_divider"></li>
+                    <li><a href="../index.html" class="nav_item"><span class="nav_icon">&#128100;</span> Go to User Site</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin_main_content">
+            
+            <!-- Admin Topbar Header -->
+            <header class="admin_header">
+                <div class="header_title_block">
+                    <h2>Admin Dashboard</h2>
+                    <p class="header_date" id="currentDateText">Thursday, July 9, 2026</p>
+                </div>
+                <div class="admin_profile_indicator">
+                    <div class="admin_avatar">SA</div>
+                    <span>System Admin</span>
+                </div>
+            </header>
+
+            <!-- Statistics Grid Section -->
+            <section class="admin_section">
+                <div class="stats_grid">
+                    <!-- Stat Card 1 -->
+                    <div class="stat_card">
+                        <div class="stat_icon_box icon_blue">&#128218;</div>
+                        <div class="stat_details">
+                            <h3>20</h3>
+                            <p>Total Ebooks</p>
+                        </div>
+                    </div>
+                    <!-- Stat Card 2 -->
+                    <div class="stat_card">
+                        <div class="stat_icon_box icon_green">&#128101;</div>
+                        <div class="stat_details">
+                            <h3>1,240</h3>
+                            <p>Total Readers</p>
+                        </div>
+                    </div>
+                    <!-- Stat Card 3 -->
+                    <div class="stat_card">
+                        <div class="stat_icon_box icon_purple">&#128187;</div>
+                        <div class="stat_details">
+                            <h3>8</h3>
+                            <p>Categories</p>
+                        </div>
+                    </div>
+                    <!-- Stat Card 4 -->
+                    <div class="stat_card">
+                        <div class="stat_icon_box icon_orange">&#128338;</div>
+                        <div class="stat_details">
+                            <h3>342</h3>
+                            <p>Active Reads</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions Section -->
+            <section class="admin_section">
+                <h3 class="section_title_admin">Quick Actions</h3>
+                <div class="actions_grid">
+                    <div class="action_card" onclick="window.location.href='add-book.html'">
+                        <span class="action_icon">&#10133;</span>
+                        <h4>Add Ebook</h4>
+                        <p>Upload new PDF file and metadata</p>
+                    </div>
+                    <div class="action_card" onclick="window.location.href='manage-books.html'">
+                        <span class="action_icon">&#128221;</span>
+                        <h4>Manage Catalogue</h4>
+                        <p>Edit details or delete existing ebooks</p>
+                    </div>
+                    <div id="btnBackupDb" class="action_card">
+                        <span class="action_icon">&#128190;</span>
+                        <h4>Database Backup</h4>
+                        <p>Export library table data (SQL format)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Books Section -->
+            <section class="admin_section">
+                <div class="recent_table_card">
+                    <h3 class="section_title_admin">Recently Added Ebooks</h3>
+                    <div class="table_container_admin">
+                        <table class="admin_table">
+                            <thead>
+                                <tr>
+                                    <th>Book Details</th>
+                                    <th>Category</th>
+                                    <th>Author Name</th>
+                                    <th>Date Added</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentBooksTableBody">
+                                <!-- Loaded via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admin Footer -->
+            <footer class="admin_footer">
+                <p>&copy; 2026 BookNest Administration. Built for College Engineering Project.</p>
+            </footer>
+
+        </main>
+        
+    </div>
+
+    <script src="../js/api-patch.js"></script>
+    <script src="../js/admin-dashboard.js"></script>
+</body>
+</html>
