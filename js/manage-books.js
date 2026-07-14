@@ -170,10 +170,14 @@ function renderManageTable() {
         const sourceLabel = isCustom ? 'Uploaded' : 'Default';
         const sourceColor = isCustom ? '#059669' : '#475569';
         
+        const isCustomCover = book.coverClass && !book.coverClass.startsWith('grad_');
+        const styleAttr = isCustomCover ? `style="background-image: url('../${book.coverClass}'); background-size: cover; background-position: center;"` : '';
+        const coverContent = isCustomCover ? '' : `<span>${book.initials || 'BK'}</span>`;
+
         rowHtml = `
             <td>
-                <div class="micro_cover ${book.coverClass || 'grad_blue'}">
-                    <span>${book.initials || 'BK'}</span>
+                <div class="micro_cover ${isCustomCover ? '' : (book.coverClass || 'grad_blue')}" ${styleAttr}>
+                    ${coverContent}
                 </div>
             </td>
             <td>

@@ -85,11 +85,16 @@ function loadAdminStatsAndTable() {
                     recentBooks.forEach(book => {
                         const tr = document.createElement('tr');
                         
+                        const isCustomCover = book.coverClass && !book.coverClass.startsWith('grad_');
+                        const styleAttr = isCustomCover ? `style="width: 32px; height: 44px; border-radius: 4px; background-image: url('../${book.coverClass}'); background-size: cover; background-position: center;"` : 'style="width: 32px; height: 44px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 11px;"';
+                        const coverContent = isCustomCover ? '' : (book.initials || 'BK');
+                        const coverClass = isCustomCover ? '' : (book.coverClass || 'grad_blue');
+
                         tr.innerHTML = `
                             <td>
                                 <div class="admin_book_cell" style="display: flex; align-items: center; gap: 10px;">
-                                    <div class="mini_cover ${book.coverClass || 'grad_blue'}" style="width: 32px; height: 44px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 11px;">
-                                        ${book.initials || 'BK'}
+                                    <div class="mini_cover ${coverClass}" ${styleAttr}>
+                                        ${coverContent}
                                     </div>
                                     <span style="font-weight: 600; color: #1e293b;">${book.title}</span>
                                 </div>

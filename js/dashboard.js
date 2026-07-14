@@ -93,19 +93,27 @@ function updateContinueCardUI(book) {
 
     // 1. Update book cover classes and text
     const bookImage = card.querySelector('.book_image_small');
+    const isCustomCover = book.coverClass && !book.coverClass.startsWith('grad_');
     if (bookImage) {
-        // Reset classes but keep 'book_image_small'
-        bookImage.className = 'book_image_small ' + (book.coverClass || 'grad_blue');
+        if (isCustomCover) {
+            bookImage.className = 'book_image_small';
+            bookImage.style.backgroundImage = `url('../${book.coverClass}')`;
+            bookImage.style.backgroundSize = 'cover';
+            bookImage.style.backgroundPosition = 'center';
+        } else {
+            bookImage.className = 'book_image_small ' + (book.coverClass || 'grad_blue');
+            bookImage.style.backgroundImage = '';
+        }
     }
 
     const bookAvatar = card.querySelector('.book_avatar');
-    if (bookAvatar) bookAvatar.textContent = book.initials || 'BK';
+    if (bookAvatar) bookAvatar.textContent = isCustomCover ? '' : (book.initials || 'BK');
 
     const coverTitle = card.querySelector('.book_cover_title');
-    if (coverTitle) coverTitle.textContent = book.title;
+    if (coverTitle) coverTitle.textContent = isCustomCover ? '' : book.title;
 
     const coverAuthor = card.querySelector('.book_cover_author');
-    if (coverAuthor) coverAuthor.textContent = book.author;
+    if (coverAuthor) coverAuthor.textContent = isCustomCover ? '' : book.author;
 
     // 2. Update continue details panel
     const categoryTag = card.querySelector('.category_tag');

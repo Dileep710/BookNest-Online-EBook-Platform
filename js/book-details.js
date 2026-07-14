@@ -206,9 +206,15 @@ function renderRelatedBooks(currentBook, allBooks) {
         const card = document.createElement('div');
         card.className = 'related_card';
         
+        const isCustomCover = book.coverClass && !book.coverClass.startsWith('grad_');
+        const styleAttr = isCustomCover ? `style="background-image: url('../${book.coverClass}'); background-size: cover; background-position: center;"` : '';
+        const coverContent = isCustomCover ? '' : `
+            <span class="rel_avatar">${book.initials || 'BK'}</span>
+        `;
+
         card.innerHTML = `
-            <div class="related_cover ${book.coverClass || 'grad_blue'}">
-                <span class="rel_avatar">${book.initials || 'BK'}</span>
+            <div class="related_cover ${isCustomCover ? '' : (book.coverClass || 'grad_blue')}" ${styleAttr}>
+                ${coverContent}
             </div>
             <h4>${book.title}</h4>
             <p>${book.author}</p>

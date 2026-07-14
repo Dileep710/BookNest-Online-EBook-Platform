@@ -79,11 +79,11 @@ public class AdminBookServlet extends HttpServlet {
             return;
         }
 
-        // Prepare upload folder path
-        String uploadBasePath = request.getServletContext().getRealPath("") + File.separator + "uploads";
-        File uploadBaseDir = new File(uploadBasePath);
-        if (!uploadBaseDir.exists()) {
-            uploadBaseDir.mkdirs();
+        // Prepare persistent upload folder path
+        String persistentUploadBasePath = "D:\\TECH_Training_10DAYS\\BookNest_copy_deletingUnwanted\\uploads";
+        File persistentBaseDir = new File(persistentUploadBasePath);
+        if (!persistentBaseDir.exists()) {
+            persistentBaseDir.mkdirs();
         }
 
         String pdfSavedPath   = "";
@@ -97,19 +97,29 @@ public class AdminBookServlet extends HttpServlet {
                 return;
             }
 
-            File pdfFolder = new File(uploadBasePath + File.separator + "Book_PDFs");
-            if (!pdfFolder.exists()) pdfFolder.mkdirs();
+            File persistentPdfFolder = new File(persistentUploadBasePath + File.separator + "Book_PDFs");
+            if (!persistentPdfFolder.exists()) {
+                persistentPdfFolder.mkdirs();
+            }
+
             String savedPdfFileName = System.currentTimeMillis() + "_" + getOriginalFileName(pdfFilePart);
-            pdfFilePart.write(pdfFolder.getAbsolutePath() + File.separator + savedPdfFileName);
+            String persistentPdfPath = persistentPdfFolder.getAbsolutePath() + File.separator + savedPdfFileName;
+            pdfFilePart.write(persistentPdfPath);
+
             pdfSavedPath = "uploads/Book_PDFs/" + savedPdfFileName;
 
             // Save cover image if provided
             Part coverFilePart = request.getPart("coverFile");
             if (coverFilePart != null && coverFilePart.getSize() > 0) {
-                File imgFolder = new File(uploadBasePath + File.separator + "Book_Images");
-                if (!imgFolder.exists()) imgFolder.mkdirs();
+                File persistentImgFolder = new File(persistentUploadBasePath + File.separator + "Book_Images");
+                if (!persistentImgFolder.exists()) {
+                    persistentImgFolder.mkdirs();
+                }
+
                 String savedCoverFileName = System.currentTimeMillis() + "_" + getOriginalFileName(coverFilePart);
-                coverFilePart.write(imgFolder.getAbsolutePath() + File.separator + savedCoverFileName);
+                String persistentImgPath = persistentImgFolder.getAbsolutePath() + File.separator + savedCoverFileName;
+                coverFilePart.write(persistentImgPath);
+
                 coverSavedPath = "uploads/Book_Images/" + savedCoverFileName;
             }
 

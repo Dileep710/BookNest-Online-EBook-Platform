@@ -98,11 +98,17 @@ function renderHistoryTable() {
         const progressLabel = isCompleted ? 'Completed' : `${item.progress}% In Progress`;
         const actionLabel = isCompleted ? 'Read Again' : 'Continue';
 
+        const isCustomCover = item.coverClass && !item.coverClass.startsWith('grad_');
+        const styleAttr = isCustomCover ? `style="background-image: url('../${item.coverClass}'); background-size: cover; background-position: center;"` : '';
+        const coverContent = isCustomCover ? '' : `
+            <span class="mini_avatar">${item.initials}</span>
+            <span class="mini_title">${item.title}</span>
+        `;
+
         row.innerHTML = `
             <td>
-                <div class="mini_cover ${item.coverClass || 'grad_blue'}">
-                    <span class="mini_avatar">${item.initials}</span>
-                    <span class="mini_title">${item.title}</span>
+                <div class="mini_cover ${isCustomCover ? '' : (item.coverClass || 'grad_blue')}" ${styleAttr}>
+                    ${coverContent}
                 </div>
             </td>
             <td class="book_info_cell">

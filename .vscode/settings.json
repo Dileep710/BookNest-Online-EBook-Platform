@@ -1,0 +1,8 @@
+{
+    "liveServer.settings.port": 5501,
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "d:\\TECH_Training_10DAYS\\apache-tomcat-9.0.120\\lib\\servlet-api.jar",
+        "d:\\D_Downloads\\postgresql-42.7.13.jar"
+    ]
+}
