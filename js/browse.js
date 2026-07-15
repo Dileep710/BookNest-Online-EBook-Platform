@@ -1,10 +1,3 @@
-// ==================================================
-// BookNest / ReadSphere - Browse JS File
-// Student: Dileep
-// Project: Java Full Stack Development Mini Project
-// ==================================================
-
-// Array of 20 Mock books for frontend browsing fallback
 const books = [
     { id: 1, title: "Clean Code", author: "Robert C. Martin", category: "Programming", rating: 4.8, coverClass: "grad_blue", initials: "CC" },
     { id: 2, title: "The Pragmatic Programmer", author: "David Thomas", category: "Programming", rating: 4.7, coverClass: "grad_purple", initials: "TP" },
@@ -27,18 +20,14 @@ const books = [
     { id: 19, title: "Dune", author: "Frank Herbert", category: "Novel", rating: 4.9, coverClass: "grad_orange", initials: "D" },
     { id: 20, title: "1984", author: "George Orwell", category: "Novel", rating: 4.8, coverClass: "grad_dark", initials: "19" }
 ];
-
 let activeCategory = 'All';
 let searchQuery = '';
 let selectedRating = 3.0; // Default lower bound
 let dbBooks = []; // Loaded from servlet database
-
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Browse Books JS Loaded!");
-    
     // Check and update navbar if user session is active
     updateNavbarSession();
-
     // Fetch books from Database BookServlet
     fetch('../BookServlet')
         .then(function(res) {
@@ -59,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
             applyUrlParams();
             renderBooks();
         });
-
     // Category filter click event
     const categoryItems = document.querySelectorAll('#categoryFilterList li');
     categoryItems.forEach(function(item) {
@@ -67,13 +55,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // Update active styling
             categoryItems.forEach(li => li.classList.remove('filter_active'));
             item.classList.add('filter_active');
-
             // Apply category filter
             activeCategory = item.getAttribute('data-category');
             renderBooks();
         });
     });
-
     // Search input typing event
     const searchInput = document.getElementById('bookSearchInput');
     if (searchInput) {
@@ -82,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
             renderBooks();
         });
     }
-
     // Sort select change event
     const sortSelect = document.getElementById('sortSelect');
     if (sortSelect) {
@@ -90,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
             renderBooks();
         });
     }
-
     // Rating filters checkboxes change event
     const ratingCheckboxes = document.querySelectorAll('input[name="rating_filter"]');
     ratingCheckboxes.forEach(function(checkbox) {
@@ -100,22 +84,18 @@ document.addEventListener('DOMContentLoaded', function() {
             ratingCheckboxes.forEach(cb => {
                 if (cb.checked) selectedRatingsList.push(parseFloat(cb.value));
             });
-            
             selectedRating = selectedRatingsList.length > 0 ? Math.min(...selectedRatingsList) : 0;
             renderBooks();
         });
     });
 });
-
 // Parses and applies parameters passed in URL (search, author, category)
 function applyUrlParams() {
     const urlParams = new URLSearchParams(window.location.search);
     const searchParam = urlParams.get('search');
     const authorParam = urlParams.get('author');
     const categoryParam = urlParams.get('category');
-    
     const searchInput = document.getElementById('bookSearchInput');
-
     if (searchParam) {
         if (searchInput) searchInput.value = searchParam;
         searchQuery = searchParam.toLowerCase().trim();
@@ -123,7 +103,6 @@ function applyUrlParams() {
         if (searchInput) searchInput.value = authorParam;
         searchQuery = authorParam.toLowerCase().trim();
     }
-
     if (categoryParam) {
         activeCategory = categoryParam;
         const categoryItems = document.querySelectorAll('#categoryFilterList li');
@@ -137,16 +116,13 @@ function applyUrlParams() {
         });
     }
 }
-
 // Update navbar if user session is saved in localStorage
 function updateNavbarSession() {
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     const authContainer = document.getElementById('navAuthButtons');
-
     if (isLoggedIn && authContainer) {
         const username = localStorage.getItem('currentUser') || 'User';
         const initials = username.substring(0, 2).toUpperCase();
-
         // Update nav buttons to a user indicator block
         authContainer.innerHTML = `
             <div class="nav_user_pill" style="cursor: pointer;" onclick="window.location.href='profile.html'">
@@ -155,7 +131,6 @@ function updateNavbarSession() {
             </div>
             <a href="#" id="navLogoutBtn" class="register_btn_nav" style="margin-left: 10px; padding: 6px 12px; font-size: 13px;">Logout</a>
         `;
-
         const logoutBtn = document.getElementById('navLogoutBtn');
         if (logoutBtn) {
             logoutBtn.addEventListener('click', function(e) {
@@ -169,33 +144,26 @@ function updateNavbarSession() {
         }
     }
 }
-
 // Render and filter books dynamically in the grid
 function renderBooks() {
     const grid = document.getElementById('booksGrid');
     const countText = document.getElementById('booksFoundText');
     const sortSelect = document.getElementById('sortSelect');
-    
     if (!grid) return;
-
     // Filter books based on active constraints
     let filtered = dbBooks.filter(book => {
         // Category Filter
         const matchesCategory = (activeCategory === 'All' || book.category.toLowerCase() === activeCategory.toLowerCase());
-        
         // Search Filter
         const matchesSearch = (
             book.title.toLowerCase().includes(searchQuery) ||
             book.author.toLowerCase().includes(searchQuery) ||
             book.category.toLowerCase().includes(searchQuery)
         );
-
         // Rating Filter
         const matchesRating = (book.rating >= selectedRating);
-
         return matchesCategory && matchesSearch && matchesRating;
     });
-
     // Apply Sorting
     const sortVal = sortSelect ? sortSelect.value : 'relevance';
     if (sortVal === 'rating') {
@@ -203,15 +171,12 @@ function renderBooks() {
     } else {
         filtered.sort((a, b) => a.id - b.id);
     }
-
     // Update results text
     if (countText) {
         countText.textContent = `${filtered.length} books found`;
     }
-
     // Clear grid
     grid.innerHTML = '';
-
     if (filtered.length === 0) {
         grid.innerHTML = `
             <div style="width: 100%; text-align: center; padding: 40px; color: #64748b; font-weight: 600;">
@@ -220,12 +185,10 @@ function renderBooks() {
         `;
         return;
     }
-
     // Generate book cards HTML
     filtered.forEach(book => {
         const card = document.createElement('div');
         card.className = 'book_card_browse';
-        
         const isCustomCover = book.coverClass && !book.coverClass.startsWith('grad_');
         const styleAttr = isCustomCover ? `style="background-image: url('../${book.coverClass}'); background-size: cover; background-position: center;"` : '';
         const coverContent = isCustomCover ? '' : `
@@ -233,7 +196,6 @@ function renderBooks() {
             <div class="book_cover_title">${book.title}</div>
             <div class="book_cover_author">${book.author}</div>
         `;
-
         card.innerHTML = `
             <div class="cover_placeholder ${isCustomCover ? '' : (book.coverClass || 'grad_blue')}" ${styleAttr}>
                 ${coverContent}
@@ -247,7 +209,6 @@ function renderBooks() {
             </div>
             <button class="btn_read_card">Read Now</button>
         `;
-
         // Card Click directs to book details page
         card.addEventListener('click', function(e) {
             const isButton = e.target.classList.contains('btn_read_card');
@@ -255,13 +216,11 @@ function renderBooks() {
                 window.location.href = `book-details.html?book=${encodeURIComponent(book.title)}`;
             }
         });
-
         // Button Click
         const readBtn = card.querySelector('.btn_read_card');
         if (readBtn) {
             readBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                
+                e.stopPropagation();     
                 const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
                 if (isLoggedIn) {
                     window.location.href = `read-book.html?book=${encodeURIComponent(book.title)}`;
@@ -271,7 +230,6 @@ function renderBooks() {
                 }
             });
         }
-
         grid.appendChild(card);
     });
 }
