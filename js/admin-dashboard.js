@@ -1,21 +1,16 @@
-// ==================================================
-// BookNest - Admin Dashboard JS File
-// Student Project Style
-// ==================================================
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() 
+{
     console.log("Admin Dashboard JS Loaded!");
-
     // 1. Enforce Admin Authentication
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     const role = localStorage.getItem('role');
 
-    if (!isLoggedIn || role !== 'admin') {
+    if (!isLoggedIn || role !== 'admin') 
+    {
         alert("Access Denied! Administrators only.");
         window.location.href = "login.html";
         return;
     }
-
     // 2. Display Current Date
     const currentDateText = document.getElementById('currentDateText');
     if (currentDateText) {
@@ -23,10 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const today = new Date();
         currentDateText.textContent = today.toLocaleDateString('en-US', options);
     }
-
     // 3. Fetch books and update stats + table
     loadAdminStatsAndTable();
-
     // 4. Database Backup Action
     const btnBackupDb = document.getElementById('btnBackupDb');
     if (btnBackupDb) {
@@ -35,11 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         btnBackupDb.style.cursor = 'pointer';
     }
-
     // 5. Add logout link to sidebar navigation if needed
     setupAdminLogout();
 });
-
 function loadAdminStatsAndTable() {
     // Fetch user count dynamically
     fetch('../ManageUsersServlet')
@@ -53,11 +44,11 @@ function loadAdminStatsAndTable() {
             }
         })
         .catch(err => console.error("Error fetching users:", err));
-
     fetch('../BookServlet')
         .then(res => res.json())
         .then(books => {
-            if (Array.isArray(books)) {
+            if (Array.isArray(books)) 
+            {
                 // Update Stats
                 const statHeaders = document.querySelectorAll('.stat_details h3');
                 if (statHeaders.length >= 4) {
@@ -68,28 +59,23 @@ function loadAdminStatsAndTable() {
                     const categories = new Set(books.map(b => b.category));
                     statHeaders[2].textContent = categories.size;
                 }
-
                 // Populate Recently Added Table
                 const tbody = document.getElementById('recentBooksTableBody');
-                if (tbody) {
+                if (tbody) 
+                {
                     tbody.innerHTML = '';
-                    
                     if (books.length === 0) {
                         tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 20px;">No books available in catalog.</td></tr>';
                         return;
                     }
-
                     // Sort by ID descending (most recent first) and take top 5
                     const recentBooks = [...books].sort((a, b) => b.id - a.id).slice(0, 5);
-
                     recentBooks.forEach(book => {
                         const tr = document.createElement('tr');
-                        
                         const isCustomCover = book.coverClass && !book.coverClass.startsWith('grad_');
                         const styleAttr = isCustomCover ? `style="width: 32px; height: 44px; border-radius: 4px; background-image: url('../${book.coverClass}'); background-size: cover; background-position: center;"` : 'style="width: 32px; height: 44px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 11px;"';
                         const coverContent = isCustomCover ? '' : (book.initials || 'BK');
                         const coverClass = isCustomCover ? '' : (book.coverClass || 'grad_blue');
-
                         tr.innerHTML = `
                             <td>
                                 <div class="admin_book_cell" style="display: flex; align-items: center; gap: 10px;">
@@ -113,19 +99,18 @@ function loadAdminStatsAndTable() {
             console.error("Error loading admin dashboard details:", err);
         });
 }
-
-function setupAdminLogout() {
+function setupAdminLogout() 
+{
     const sidebarNavList = document.querySelector('.sidebar_nav ul');
-    if (sidebarNavList) {
+    if (sidebarNavList) 
+    {
         // Add divider and logout item
         const divider = document.createElement('li');
         divider.className = 'nav_divider';
         sidebarNavList.appendChild(divider);
-
         const logoutItem = document.createElement('li');
         logoutItem.innerHTML = `<a href="#" id="adminLogoutLink" class="nav_item" style="color: #ef4444;"><span class="nav_icon">&#128682;</span> Admin Logout</a>`;
         sidebarNavList.appendChild(logoutItem);
-
         const adminLogoutLink = document.getElementById('adminLogoutLink');
         if (adminLogoutLink) {
             adminLogoutLink.addEventListener('click', function(e) {
