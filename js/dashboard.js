@@ -1,18 +1,12 @@
-// ==================================================
-// BookNest - User Dashboard JS File
-// Student Project Style
-// ==================================================
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() 
+{
     console.log("User Dashboard JS Loaded!");
-
     // Update Welcome Username
     const welcomeUserName = document.getElementById('welcomeUserName');
     if (welcomeUserName) {
         const userName = localStorage.getItem('fullName') || localStorage.getItem('currentUser') || 'Reader';
         welcomeUserName.textContent = userName;
     }
-
     // Display Current Date
     const currentDateText = document.getElementById('currentDateText');
     if (currentDateText) {
@@ -20,18 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const today = new Date();
         currentDateText.textContent = today.toLocaleDateString('en-US', options);
     }
-
     // Immediately hide the static placeholder before the fetch runs
     // This prevents it from showing even for a moment if fetch is slow or fails
     var card = document.querySelector('.continue_reading_card');
     if (card) {
         card.innerHTML = '<div style="flex:1;text-align:center;padding:30px 15px;color:#64748b;"><span style="font-size:36px;display:block;margin-bottom:10px;">📖</span><p style="margin:0 0 15px 0;font-weight:600;font-size:15px;color:#475569;">Loading...</p></div>';
     }
-
     // Load actual reading history from database to populate the "Continue Reading" card
     loadContinueReadingCard();
     loadFavoritesSidebar();
-
     // Simple interaction tracker for links
     const quickLinks = document.querySelectorAll('.quick_links_list a');
     quickLinks.forEach(function(link) {
@@ -39,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("User navigated to: " + link.textContent.trim());
         });
     });
-
     // Setup basic click alerts for footer placeholders
     const footerPlaceholders = document.querySelectorAll('footer a[href="#"]');
     footerPlaceholders.forEach(function(link) {
@@ -49,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
 // Fetches history and updates the "Continue Reading" card with the last accessed book
 function loadContinueReadingCard() {
     fetch('../HistoryServlet')
@@ -85,12 +74,10 @@ function loadContinueReadingCard() {
             }
         });
 }
-
 // Helper function to update the DOM elements inside the Continue Reading card
 function updateContinueCardUI(book) {
     const card = document.querySelector('.continue_reading_card');
     if (!card) return;
-
     // 1. Update book cover classes and text
     const bookImage = card.querySelector('.book_image_small');
     const isCustomCover = book.coverClass && !book.coverClass.startsWith('grad_');
@@ -105,33 +92,24 @@ function updateContinueCardUI(book) {
             bookImage.style.backgroundImage = '';
         }
     }
-
     const bookAvatar = card.querySelector('.book_avatar');
     if (bookAvatar) bookAvatar.textContent = isCustomCover ? '' : (book.initials || 'BK');
-
     const coverTitle = card.querySelector('.book_cover_title');
     if (coverTitle) coverTitle.textContent = isCustomCover ? '' : book.title;
-
     const coverAuthor = card.querySelector('.book_cover_author');
     if (coverAuthor) coverAuthor.textContent = isCustomCover ? '' : book.author;
-
     // 2. Update continue details panel
     const categoryTag = card.querySelector('.category_tag');
     if (categoryTag) categoryTag.textContent = book.category.toUpperCase();
-
     const titleHeader = card.querySelector('.continue_details h3');
     if (titleHeader) titleHeader.textContent = book.title;
-
     const authorName = card.querySelector('.continue_details .author_name');
     if (authorName) authorName.textContent = book.author;
-
     // 3. Update reading progress
     const progressPercent = card.querySelector('.progress_percent');
     if (progressPercent) progressPercent.textContent = `${book.progress}%`;
-
     const progressBarFill = card.querySelector('.progress_bar_fill');
     if (progressBarFill) progressBarFill.style.width = `${book.progress}%`;
-
     // 4. Update button navigation actions
     const btnContinue = card.querySelector('.btn_continue');
     if (btnContinue) {
@@ -139,7 +117,6 @@ function updateContinueCardUI(book) {
             window.location.href = `read-book.html?book=${encodeURIComponent(book.title)}`;
         };
     }
-
     const btnDetails = card.querySelector('.btn_details_outline');
     if (btnDetails) {
         btnDetails.onclick = function() {
@@ -147,12 +124,10 @@ function updateContinueCardUI(book) {
         };
     }
 }
-
 // Fetches and displays favorites in the dashboard sidebar card
 function loadFavoritesSidebar() {
     const container = document.getElementById('favoritesListContainer');
     if (!container) return;
-
     fetch('../FavoriteServlet')
         .then(function(res) {
             return res.json();
