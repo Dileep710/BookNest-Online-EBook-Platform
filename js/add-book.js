@@ -1,8 +1,3 @@
-// ==================================================
-// BookNest - Add Book JS File
-// Student Project Style
-// ==================================================
-
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Add Book JS Loaded!");
 
@@ -15,14 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = "login.html";
         return;
     }
-
     const addBookForm = document.getElementById('addBookForm');
-    
     if (addBookForm) {
         addBookForm.addEventListener('submit', function(e) {
             e.preventDefault();
-
-            // Extract values
             const title = document.getElementById('bookTitle').value.trim();
             const author = document.getElementById('bookAuthor').value.trim();
             const category = document.getElementById('bookCategory').value;
@@ -31,14 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const pdfFile = document.getElementById('bookPdfFile').files[0];
             const coverFile = document.getElementById('bookCoverFile').files[0];
-
-            // Basic validation
             if (!title || !author || !category || !description || !pdfFile || !coverFile) {
                 alert('Please fill out all required fields, including the PDF and Cover Image.');
                 return;
             }
-
-            // Prepare multipart Form Data for AdminBookServlet
             const formData = new FormData();
             formData.append('title', title);
             formData.append('author', author);
