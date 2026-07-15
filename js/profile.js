@@ -1,11 +1,5 @@
-// ==================================================
-// BookNest - Profile JS File
-// Student Project Style
-// ==================================================
-
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Profile JS Loaded!");
-
     // Input elements
     const profileForm = document.getElementById('profileForm');
     const fullNameInput = document.getElementById('fullName');
@@ -13,15 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const phoneInput = document.getElementById('phone');
     const favGenreInput = document.getElementById('favGenre');
     const notificationsInput = document.getElementById('notifications');
-
     // Display elements
     const nameDisplay = document.getElementById('profileNameDisplay');
     const avatarDisplay = document.querySelector('.profile_avatar_large');
-
     // First load default values as placeholder
     let storedName = localStorage.getItem('currentUser') || 'User';
     updateProfileDisplays(storedName);
-
     // Call ProfileServlet (GET) to load profile from PostgreSQL database
     fetch('../ProfileServlet')
         .then(function(res) {
@@ -34,9 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (phoneInput) phoneInput.value = data.phone;
                 if (favGenreInput) favGenreInput.value = data.favGenre;
                 if (notificationsInput) notificationsInput.value = data.notifications;
-
                 updateProfileDisplays(data.fullName);
-
                 // Update localStorage cache
                 localStorage.setItem('currentUser', data.fullName);
                 localStorage.setItem('registeredEmail', data.email);
@@ -50,44 +39,36 @@ document.addEventListener('DOMContentLoaded', function() {
             const localPhone = localStorage.getItem('profilePhone') || '+1 (555) 019-2834';
             const localGenre = localStorage.getItem('profileGenre') || 'Programming';
             const localNotifications = localStorage.getItem('profileNotifications') || 'all';
-
             if (fullNameInput) fullNameInput.value = localName;
             if (emailInput) emailInput.value = localEmail;
             if (phoneInput) phoneInput.value = localPhone;
             if (favGenreInput) favGenreInput.value = localGenre;
             if (notificationsInput) notificationsInput.value = localNotifications;
-
             updateProfileDisplays(localName);
         });
-
     // Form Submission: updates profile details in database
     if (profileForm) {
         profileForm.addEventListener('submit', function(e) {
             e.preventDefault();
-
             const updatedName = fullNameInput.value.trim();
             const updatedEmail = emailInput.value.trim();
             const updatedPhone = phoneInput.value.trim();
             const updatedGenre = favGenreInput.value;
             const updatedNotifications = notificationsInput.value;
-
             const newPasswordInput = document.getElementById('newPassword');
             const confirmNewPasswordInput = document.getElementById('confirmNewPassword');
             const newPassword = newPasswordInput ? newPasswordInput.value : '';
             const confirmNewPassword = confirmNewPasswordInput ? confirmNewPasswordInput.value : '';
-
             if (updatedName === '' || updatedEmail === '') {
                 alert('Full Name and Email Address are required!');
                 return;
             }
-
             // Construct form url encoded parameters
             let params = 'fullName=' + encodeURIComponent(updatedName) + 
                          '&email=' + encodeURIComponent(updatedEmail) + 
                          '&phone=' + encodeURIComponent(updatedPhone) + 
                          '&favGenre=' + encodeURIComponent(updatedGenre) + 
                          '&notifications=' + encodeURIComponent(updatedNotifications);
-
             if (newPassword !== '') {
                 if (newPassword !== confirmNewPassword) {
                     alert('New passwords do not match!');
@@ -99,7 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 params += '&newPassword=' + encodeURIComponent(newPassword);
             }
-
             // POST request to ProfileServlet
             fetch('../ProfileServlet', {
                 method: 'POST',
@@ -115,11 +95,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.status === 'success') {
                     // Update displays
                     updateProfileDisplays(updatedName);
-
                     // Clear password fields
                     if (newPasswordInput) newPasswordInput.value = '';
                     if (confirmNewPasswordInput) confirmNewPasswordInput.value = '';
-
                     // Update local storage cache
                     localStorage.setItem('registeredName', updatedName);
                     localStorage.setItem('currentUser', updatedName);
@@ -127,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     localStorage.setItem('profilePhone', updatedPhone);
                     localStorage.setItem('profileGenre', updatedGenre);
                     localStorage.setItem('profileNotifications', updatedNotifications);
-
                     alert('Profile updated successfully in database!');
                 } else {
                     alert(data.message);
@@ -139,7 +116,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-
     function updateProfileDisplays(name) {
         if (nameDisplay) {
             nameDisplay.textContent = name;
@@ -157,7 +133,6 @@ document.addEventListener('DOMContentLoaded', function() {
             avatarDisplay.textContent = initials;
         }
     }
-
     // Profile page Logout button functionality
     const profileLogoutBtn = document.getElementById('profileLogoutBtn');
     if (profileLogoutBtn) {
