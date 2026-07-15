@@ -1,21 +1,14 @@
-// ==================================================
-// BookNest - Book Details JS File
-// Student Project Style
-// ==================================================
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() 
+{
     console.log("Book Details JS Loaded!");
-
     // Parse URL parameter
     const urlParams = new URLSearchParams(window.location.search);
     const bookTitleParam = urlParams.get('book');
-
-    if (!bookTitleParam) {
+    if(!bookTitleParam) {
         alert("No book selected. Redirecting to catalogue...");
         window.location.href = "browse-books.html";
         return;
     }
-
     // Fetch catalogue from database
     fetch('../BookServlet')
         .then(function(res) {
@@ -23,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(function(books) {
             const book = books.find(b => b.title.toLowerCase() === bookTitleParam.toLowerCase());
-            if (book) {
+            if(book) {
                 renderBookDetails(book, books);
             } else {
                 console.error("Book not found in database catalog: " + bookTitleParam);
@@ -36,12 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
             alert("Error loading book details from server.");
         });
 });
-
 function renderBookDetails(book, allBooks) {
     // 1. Populate cover
     const detailsBookCover = document.getElementById('detailsBookCover');
     const isCustomCover = book.coverClass && !book.coverClass.startsWith('grad_');
-
     if (detailsBookCover) {
         if (isCustomCover) {
             detailsBookCover.className = 'large_cover';
@@ -53,54 +44,44 @@ function renderBookDetails(book, allBooks) {
             detailsBookCover.style.backgroundImage = "";
         }
     }
-    
     const detailsBookAvatar = document.getElementById('detailsBookAvatar');
     if (detailsBookAvatar) {
         detailsBookAvatar.textContent = isCustomCover ? '' : (book.initials || 'BK');
     }
-
     const detailsBookCoverTitle = document.getElementById('detailsBookCoverTitle');
     if (detailsBookCoverTitle) {
         detailsBookCoverTitle.textContent = isCustomCover ? '' : book.title;
     }
-
     const detailsBookCoverAuthor = document.getElementById('detailsBookCoverAuthor');
     if (detailsBookCoverAuthor) {
         detailsBookCoverAuthor.textContent = isCustomCover ? '' : book.author;
     }
-
     // 2. Populate main info panel
     const detailsCategory = document.getElementById('detailsCategory');
     if (detailsCategory) {
         detailsCategory.textContent = book.category.toUpperCase();
     }
-
     const detailsTitle = document.getElementById('detailsTitle');
     if (detailsTitle) {
         detailsTitle.textContent = book.title;
     }
-
     const detailsAuthor = document.getElementById('detailsAuthor');
     if (detailsAuthor) {
         detailsAuthor.textContent = 'by ' + book.author;
     }
-
     const detailsRating = document.getElementById('detailsRating');
     if (detailsRating) {
         const rVal = typeof book.rating === 'number' ? book.rating.toFixed(1) : parseFloat(book.rating).toFixed(1);
         detailsRating.textContent = rVal + ' Stars';
     }
-
     const detailsDescription = document.getElementById('detailsDescription');
     if (detailsDescription) {
         detailsDescription.textContent = book.description || 'No description available for this book.';
     }
-
     const detailsPages = document.getElementById('detailsPages');
     if (detailsPages) {
         detailsPages.textContent = book.pages || 'N/A';
     }
-
     // 3. Read Now button click
     const btnReadNowDetails = document.getElementById('btnReadNowDetails');
     if (btnReadNowDetails) {
@@ -114,7 +95,6 @@ function renderBookDetails(book, allBooks) {
             }
         });
     }
-
     // 3.5 Favorite button click & state check
     const btnFavoriteDetails = document.getElementById('btnFavoriteDetails');
     if (btnFavoriteDetails) {
@@ -135,7 +115,6 @@ function renderBookDetails(book, allBooks) {
             })
             .catch(err => console.error("Error checking favorite status:", err));
         }
-
         btnFavoriteDetails.addEventListener('click', function() {
             const currentIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
             if (!currentIsLoggedIn) {
@@ -143,7 +122,6 @@ function renderBookDetails(book, allBooks) {
                 window.location.href = 'login.html';
                 return;
             }
-
             const toggleParams = 'bookTitle=' + encodeURIComponent(book.title);
             fetch('../FavoriteServlet', {
                 method: 'POST',
@@ -167,11 +145,9 @@ function renderBookDetails(book, allBooks) {
             });
         });
     }
-
     // 4. Render related books
     renderRelatedBooks(book, allBooks);
 }
-
 function updateFavoriteButtonUI(btn, isFav) {
     if (isFav) {
         btn.innerHTML = '<span class="heart_icon">&#9829;</span> Remove from Favorites';
@@ -183,16 +159,12 @@ function updateFavoriteButtonUI(btn, isFav) {
         btn.style.borderColor = '#2563eb';
     }
 }
-
 function renderRelatedBooks(currentBook, allBooks) {
     const grid = document.getElementById('relatedBooksGrid');
     if (!grid) return;
-
     // Filter books of the same category, excluding current book
     const related = allBooks.filter(b => b.category === currentBook.category && b.id !== currentBook.id).slice(0, 4);
-
     grid.innerHTML = '';
-
     if (related.length === 0) {
         grid.innerHTML = `
             <div style="grid-column: 1/-1; text-align: center; color: #64748b; font-weight: 500; padding: 20px;">
@@ -201,17 +173,14 @@ function renderRelatedBooks(currentBook, allBooks) {
         `;
         return;
     }
-
     related.forEach(book => {
         const card = document.createElement('div');
         card.className = 'related_card';
-        
         const isCustomCover = book.coverClass && !book.coverClass.startsWith('grad_');
         const styleAttr = isCustomCover ? `style="background-image: url('../${book.coverClass}'); background-size: cover; background-position: center;"` : '';
         const coverContent = isCustomCover ? '' : `
             <span class="rel_avatar">${book.initials || 'BK'}</span>
         `;
-
         card.innerHTML = `
             <div class="related_cover ${isCustomCover ? '' : (book.coverClass || 'grad_blue')}" ${styleAttr}>
                 ${coverContent}
@@ -219,12 +188,10 @@ function renderRelatedBooks(currentBook, allBooks) {
             <h4>${book.title}</h4>
             <p>${book.author}</p>
         `;
-
         card.addEventListener('click', function() {
             window.location.href = `book-details.html?book=${encodeURIComponent(book.title)}`;
         });
         card.style.cursor = 'pointer';
-
         grid.appendChild(card);
     });
 }
