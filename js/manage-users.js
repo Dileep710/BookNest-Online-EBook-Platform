@@ -132,7 +132,7 @@ function renderUsersTable() {
 
 // Fetch a single user's profile and reading history, then display in modal
 function openUserDetails(userId) {
-    fetch("../ManageUsersServlet?userId=" + userId)
+    fetch("../ManageUsersServlet?selectedUserId=" + userId)
         .then(function(res) {
             return res.json();
         })

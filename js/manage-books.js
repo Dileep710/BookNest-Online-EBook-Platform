@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
                            '&category=' + encodeURIComponent(category) +
                            '&rating=' + rating;
 
-            fetch('../EditBookServlet', {
+            fetch('../AdminBookServlet?action=edit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -246,8 +246,8 @@ function deleteBookRecord(id) {
 
     const confirmDel = confirm(`Are you sure you want to delete the eBook "${book.title}"?\nThis will permanently delete it from the PostgreSQL database catalogue.`);
     if (confirmDel) {
-        // Send POST request to DeleteBookServlet
-        fetch('../DeleteBookServlet', {
+        // Send POST request to AdminBookServlet with action=delete
+        fetch('../AdminBookServlet?action=delete', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'

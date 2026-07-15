@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Dom elements
     const readerTitle = document.getElementById('readerBookTitle');
-    const currentPageNumEl = document.getElementById('currentPageNum');
+    const inputPageNumEl = document.getElementById('inputPageNum');
     const totalPagesNumEl = document.getElementById('totalPagesNum');
     const btnPrevPage = document.getElementById('btnPrevPage');
     const btnNextPage = document.getElementById('btnNextPage');
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Update page counters
-        if (currentPageNumEl) currentPageNumEl.textContent = num;
+        if (inputPageNumEl) inputPageNumEl.value = num;
     }
 
     function queueRenderPage(num) {
@@ -205,6 +205,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (btnNextPage) {
         btnNextPage.addEventListener('click', goToNextPage);
+    }
+
+    // Bind page number input field
+    if (inputPageNumEl) {
+        inputPageNumEl.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const targetPage = parseInt(inputPageNumEl.value);
+                if (isNaN(targetPage) || targetPage < 1 || targetPage > totalPages) {
+                    alert("Page not found!");
+                    inputPageNumEl.value = currentPage; // Reset to current page
+                } else {
+                    currentPage = targetPage;
+                    queueRenderPage(currentPage);
+                    if (currentBook) saveReadingProgress(currentBook.title, currentPage);
+                }
+            }
+        });
+
+        inputPageNumEl.addEventListener('change', function() {
+            const targetPage = parseInt(inputPageNumEl.value);
+            if (isNaN(targetPage) || targetPage < 1 || targetPage > totalPages) {
+                alert("Page not found!");
+                inputPageNumEl.value = currentPage; // Reset to current page
+            } else {
+                if (targetPage !== currentPage) {
+                    currentPage = targetPage;
+                    queueRenderPage(currentPage);
+                    if (currentBook) saveReadingProgress(currentBook.title, currentPage);
+                }
+            }
+        });
     }
 
     // Zoom features

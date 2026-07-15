@@ -1,0 +1,17 @@
+# Maven build folder
+target/
+
+# Compiled Java classes
+*.class
+
+# VS Code settings
+.vscode/
+
+# Logs
+*.log
+
+# Windows files
+Thumbs.db
+
+# macOS files
+.DS_Store
