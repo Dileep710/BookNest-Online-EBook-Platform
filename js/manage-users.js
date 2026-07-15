@@ -1,27 +1,17 @@
-// ==================================================
-// BookNest - Manage Users JS File
-// Student Project Style
-// ==================================================
-
 let usersList = [];
 let searchQuery = "";
-
 document.addEventListener("DOMContentLoaded", function() {
     console.log("Manage Users JS Loaded!");
-
     // 1. Enforce Admin Authentication
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     const role = localStorage.getItem("role");
-
     if (!isLoggedIn || role !== "admin") {
         alert("Access Denied! Administrators only.");
         window.location.href = "login.html";
         return;
     }
-
     // 2. Load users from backend
     loadUsersFromDatabase();
-
     // 3. Search filter handler
     const searchInput = document.getElementById("userSearchInput");
     if (searchInput) {
@@ -30,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function() {
             renderUsersTable();
         });
     }
-
     // 4. Modal close handlers
     const userDetailsModal = document.getElementById("userDetailsModal");
     const btnCloseUserModal = document.getElementById("btnCloseUserModal");
@@ -38,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function() {
         btnCloseUserModal.addEventListener("click", function() {
             userDetailsModal.style.display = "none";
         });
-
         // Close on background click
         window.addEventListener("click", function(e) {
             if (e.target === userDetailsModal) {
@@ -47,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
-
 // Load the list of users from the ManageUsersServlet
 function loadUsersFromDatabase() {
     fetch("../ManageUsersServlet")
@@ -67,12 +54,10 @@ function loadUsersFromDatabase() {
             alert("Error connecting to the server to fetch user details.");
         });
 }
-
 // Render the users table with filters
 function renderUsersTable() {
     const tableBody = document.getElementById("adminUsersTableBody");
     if (!tableBody) return;
-
     // Filter users list based on query
     const filtered = usersList.filter(user => {
         return (
@@ -80,9 +65,7 @@ function renderUsersTable() {
             user.email.toLowerCase().includes(searchQuery)
         );
     });
-
     tableBody.innerHTML = "";
-
     if (filtered.length === 0) {
         tableBody.innerHTML = `
             <tr>
@@ -93,10 +76,8 @@ function renderUsersTable() {
         `;
         return;
     }
-
     filtered.forEach(user => {
         const row = document.createElement("tr");
-
         row.innerHTML = `
             <td><strong>${user.id}</strong></td>
             <td>
@@ -112,7 +93,6 @@ function renderUsersTable() {
                 <button class="btn_action_delete" data-id="${user.id}">Delete</button>
             </td>
         `;
-
         // Click on Name or View Details button opens the detailed view modal
         row.querySelector(".user-clickable-name").addEventListener("click", function() {
             openUserDetails(user.id);
@@ -120,16 +100,13 @@ function renderUsersTable() {
         row.querySelector(".btn_view").addEventListener("click", function() {
             openUserDetails(user.id);
         });
-
         // Click on Delete calls the delete service
         row.querySelector(".btn_action_delete").addEventListener("click", function() {
             deleteUser(user.id, user.fullName);
         });
-
         tableBody.appendChild(row);
     });
 }
-
 // Fetch a single user's profile and reading history, then display in modal
 function openUserDetails(userId) {
     fetch("../ManageUsersServlet?selectedUserId=" + userId)
@@ -143,7 +120,6 @@ function openUserDetails(userId) {
                 document.getElementById("detEmail").textContent = data.email;
                 document.getElementById("detPhone").textContent = data.phone || "-";
                 document.getElementById("detGenre").textContent = data.favGenre || "-";
-
                 // Populate Reading History Table
                 const historyBody = document.getElementById("userHistoryTableBody");
                 if (historyBody) {
@@ -170,7 +146,6 @@ function openUserDetails(userId) {
                         `;
                     }
                 }
-
                 // Show Modal
                 const modal = document.getElementById("userDetailsModal");
                 if (modal) {
@@ -185,13 +160,11 @@ function openUserDetails(userId) {
             alert("Error connecting to server to fetch profile data.");
         });
 }
-
 // Delete user account
 function deleteUser(userId, fullName) {
     const confirmDel = confirm(`Are you sure you want to permanently delete user "${fullName}" (ID: ${userId})?\n\nThis will also delete all their reading history and favorites from the database!`);
     if (confirmDel) {
         const params = "action=delete&userId=" + userId;
-        
         fetch("../ManageUsersServlet", {
             method: "POST",
             headers: {
