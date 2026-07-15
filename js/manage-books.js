@@ -1,8 +1,3 @@
-// ==================================================
-// BookNest - Manage Books JS File
-// Student Project Style
-// ==================================================
-
 // Default fallback mock books (used if server is down)
 const defaultBooks = [
     { id: 1, title: "Clean Code", author: "Robert C. Martin", category: "Programming", rating: 4.8, coverClass: "grad_blue", initials: "CC", isCustom: false },
@@ -10,27 +5,21 @@ const defaultBooks = [
     { id: 3, title: "JS: The Good Parts", author: "Douglas Crockford", category: "Programming", rating: 4.6, coverClass: "grad_orange", initials: "JP", isCustom: false },
     { id: 4, title: "Design Patterns", author: "Gang of Four", category: "Programming", rating: 4.6, coverClass: "grad_green", initials: "DP", isCustom: false }
 ];
-
 let activeCatalog = [];
 let searchQuery = '';
 let activeCategory = 'All';
-
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Manage Books JS Loaded!");
-
     // Enforce Admin Authentication
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     const role = localStorage.getItem('role');
-
     if (!isLoggedIn || role !== 'admin') {
         alert("Access Denied! Administrators only.");
         window.location.href = "login.html";
         return;
     }
-
     // Load initial list from Database
     loadCatalogFromDatabase();
-
     // Search bar event
     const searchInput = document.getElementById('adminSearchInput');
     if (searchInput) {
@@ -39,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
             renderManageTable();
         });
     }
-
     // Category filter dropdown event
     const categorySelect = document.getElementById('adminCategorySelect');
     if (categorySelect) {
@@ -48,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
             renderManageTable();
         });
     }
-
     // Modal Close triggers
     const editBookModal = document.getElementById('editBookModal');
     const btnCloseModal = document.getElementById('btnCloseModal');
@@ -56,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
         btnCloseModal.addEventListener('click', function() {
             editBookModal.style.display = 'none';
         });
-
         // Close on clicking outside modal card
         window.addEventListener('click', function(e) {
             if (e.target === editBookModal) {
@@ -64,31 +50,26 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
     // Edit Modal Form submit handler
     const editBookForm = document.getElementById('editBookForm');
     if (editBookForm) {
         editBookForm.addEventListener('submit', function(e) {
             e.preventDefault();
-
             const bookId = parseInt(document.getElementById('editBookId').value);
             const title = document.getElementById('editBookTitle').value.trim();
             const author = document.getElementById('editBookAuthor').value.trim();
             const category = document.getElementById('editBookCategory').value;
             const rating = parseFloat(document.getElementById('editBookRating').value);
-
             if (!title || !author) {
                 alert('Please enter valid title and author details.');
                 return;
             }
-
             // Call EditBookServlet to update book in PostgreSQL
             const params = 'id=' + bookId +
                            '&title=' + encodeURIComponent(title) +
                            '&author=' + encodeURIComponent(author) +
                            '&category=' + encodeURIComponent(category) +
                            '&rating=' + rating;
-
             fetch('../AdminBookServlet?action=edit', {
                 method: 'POST',
                 headers: {
@@ -116,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
 // Load the book catalogue from the Database via BookServlet
 function loadCatalogFromDatabase() {
     fetch('../BookServlet')
@@ -134,12 +114,10 @@ function loadCatalogFromDatabase() {
             renderManageTable();
         });
 }
-
 // Render the book rows inside table
 function renderManageTable() {
     const tableBody = document.getElementById('adminBooksTableBody');
     if (!tableBody) return;
-
     // Filter books
     const filtered = activeCatalog.filter(book => {
         const matchesCategory = (activeCategory === 'All' || book.category === activeCategory);
@@ -150,9 +128,7 @@ function renderManageTable() {
         );
         return matchesCategory && matchesSearch;
     });
-
     tableBody.innerHTML = '';
-
     if (filtered.length === 0) {
         tableBody.innerHTML = `
             <tr>
@@ -163,17 +139,14 @@ function renderManageTable() {
         `;
         return;
     }
-
     filtered.forEach(book => {
         // Tag added books as custom based on their DB ID if it is high
         const isCustom = book.id > 20;
         const sourceLabel = isCustom ? 'Uploaded' : 'Default';
         const sourceColor = isCustom ? '#059669' : '#475569';
-        
         const isCustomCover = book.coverClass && !book.coverClass.startsWith('grad_');
         const styleAttr = isCustomCover ? `style="background-image: url('../${book.coverClass}'); background-size: cover; background-position: center;"` : '';
         const coverContent = isCustomCover ? '' : `<span>${book.initials || 'BK'}</span>`;
-
         rowHtml = `
             <td>
                 <div class="micro_cover ${isCustomCover ? '' : (book.coverClass || 'grad_blue')}" ${styleAttr}>
@@ -196,34 +169,27 @@ function renderManageTable() {
                 <button class="btn_action_delete" data-id="${book.id}">Delete</button>
             </td>
         `;
-
         const row = document.createElement('tr');
         row.innerHTML = rowHtml;
-
         // Edit button click event
         row.querySelector('.btn_action_edit').addEventListener('click', function() {
             openEditModal(book.id);
         });
-
         // Delete button click event
         row.querySelector('.btn_action_delete').addEventListener('click', function() {
             deleteBookRecord(book.id);
         });
-
         tableBody.appendChild(row);
     });
 }
-
 // Populate fields and open the edit modal
 function openEditModal(id) {
     const book = activeCatalog.find(b => b.id === id);
     if (!book) return;
-
     document.getElementById('editBookId').value = book.id;
     document.getElementById('editBookTitle').value = book.title;
     document.getElementById('editBookAuthor').value = book.author;
     document.getElementById('editBookCategory').value = book.category;
-    
     // Parse numeric rating
     let ratingVal = 4.5;
     if (typeof book.rating === 'number') {
@@ -232,18 +198,15 @@ function openEditModal(id) {
         ratingVal = parseFloat(book.rating) || 4.5;
     }
     document.getElementById('editBookRating').value = ratingVal;
-
     const editBookModal = document.getElementById('editBookModal');
     if (editBookModal) {
         editBookModal.style.display = 'flex';
     }
 }
-
 // Delete book record from active list and database
 function deleteBookRecord(id) {
     const book = activeCatalog.find(b => b.id === id);
     if (!book) return;
-
     const confirmDel = confirm(`Are you sure you want to delete the eBook "${book.title}"?\nThis will permanently delete it from the PostgreSQL database catalogue.`);
     if (confirmDel) {
         // Send POST request to AdminBookServlet with action=delete
