@@ -1,17 +1,9 @@
-// ==================================================
-// BookNest - Reading History JS File
-// Student Project Style
-// ==================================================
-
 // Local array that will be loaded from the database
 let historyData = [];
-
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Reading History JS Loaded!");
-
     // Load reading history from the database
     loadReadingHistory();
-
     // Clear History action
     const btnClearHistory = document.getElementById('btnClearHistory');
     if (btnClearHistory) {
@@ -20,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('History is already empty!');
                 return;
             }
-            
             const confirmClear = confirm('Are you sure you want to clear your reading history? This action cannot be undone.');
             if (confirmClear) {
                 // Post to HistoryServlet to clear reading history in DB
@@ -51,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
 // Fetch reading history from the database
 function loadReadingHistory() {
     fetch('../HistoryServlet')
@@ -70,14 +60,11 @@ function loadReadingHistory() {
             renderHistoryTable();
         });
 }
-
 // Render history items dynamically in table body
 function renderHistoryTable() {
     const tableBody = document.getElementById('historyTableBody');
     if (!tableBody) return;
-
     tableBody.innerHTML = '';
-
     if (historyData.length === 0) {
         tableBody.innerHTML = `
             <tr>
@@ -88,23 +75,19 @@ function renderHistoryTable() {
         `;
         return;
     }
-
     historyData.forEach(item => {
-        const row = document.createElement('tr');
-        
+        const row = document.createElement('tr');   
         // Progress formatting
         const isCompleted = item.progress === 100;
         const progressClass = isCompleted ? 'progress_green' : 'progress_blue';
         const progressLabel = isCompleted ? 'Completed' : `${item.progress}% In Progress`;
         const actionLabel = isCompleted ? 'Read Again' : 'Continue';
-
         const isCustomCover = item.coverClass && !item.coverClass.startsWith('grad_');
         const styleAttr = isCustomCover ? `style="background-image: url('../${item.coverClass}'); background-size: cover; background-position: center;"` : '';
         const coverContent = isCustomCover ? '' : `
             <span class="mini_avatar">${item.initials}</span>
             <span class="mini_title">${item.title}</span>
         `;
-
         row.innerHTML = `
             <td>
                 <div class="mini_cover ${isCustomCover ? '' : (item.coverClass || 'grad_blue')}" ${styleAttr}>
@@ -131,12 +114,10 @@ function renderHistoryTable() {
                 <button class="btn_action_table" data-title="${item.title}">${actionLabel}</button>
             </td>
         `;
-
         // Action Button click redirects to reader
         row.querySelector('.btn_action_table').addEventListener('click', function() {
             window.location.href = `read-book.html?book=${encodeURIComponent(item.title)}`;
         });
-
         tableBody.appendChild(row);
     });
 }
