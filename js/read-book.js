@@ -1,23 +1,14 @@
-// ==================================================
-// BookNest - Read Book JS File
-// Student Project Style - Fully Customized PDF.js Viewer
-// ==================================================
-
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Read Book JS Loaded!");
-
     // Configure PDF.js worker
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-
     const urlParams = new URLSearchParams(window.location.search);
     const bookTitleParam = urlParams.get('book');
-
     if (!bookTitleParam) {
         alert("No book selected to read. Redirecting to browse page...");
         window.location.href = "browse-books.html";
         return;
     }
-
     // Dom elements
     const readerTitle = document.getElementById('readerBookTitle');
     const inputPageNumEl = document.getElementById('inputPageNum');
@@ -28,12 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnZoomOut = document.getElementById('btnZoomOut');
     const zoomLevelText = document.getElementById('zoomLevelText');
     const btnDownload = document.getElementById('btnDownload');
-    
     const canvas = document.getElementById('pdfCanvas');
     const ctx = canvas.getContext('2d');
     const loadingOverlay = document.getElementById('loadingOverlay');
     const viewerContainer = document.getElementById('pdfViewerContainer');
-
     let currentBook = null;
     let currentPage = 1;
     let totalPages = 1;
@@ -41,11 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let pdfDoc = null;
     let pageRendering = false;
     let pageNumPending = null;
-
     // Swipe gestures variables
     let touchStartX = 0;
     let touchEndX = 0;
-
     // 1. Fetch book data from server
     fetch('../BookServlet')
         .then(res => res.json())
@@ -54,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (foundBook) {
                 currentBook = foundBook;
                 if (readerTitle) readerTitle.textContent = foundBook.title;
-
                 // Load the PDF file using PDF.js
                 loadPdfDocument('../' + foundBook.pdf_path);
             } else {
@@ -66,15 +52,12 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Error loading catalogue:", err);
             alert("Error loading PDF reader. Please check backend.");
         });
-
     function loadPdfDocument(pdfUrl) {
         if (loadingOverlay) loadingOverlay.style.display = 'flex';
-
         pdfjsLib.getDocument(pdfUrl).promise.then(function(pdfDoc_) {
             pdfDoc = pdfDoc_;
             totalPages = pdfDoc.numPages;
             if (totalPagesNumEl) totalPagesNumEl.textContent = totalPages;
-
             // Fetch reading history to get last read page
             fetch('../HistoryServlet')
                 .then(res => res.json())
@@ -85,10 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     } else {
                         currentPage = 1;
                     }
-
                     if (currentPage > totalPages) currentPage = totalPages;
                     if (currentPage < 1) currentPage = 1;
-
                     renderPage(currentPage);
                     saveReadingProgress(currentBook.title, currentPage);
                 })
@@ -98,7 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     renderPage(currentPage);
                     saveReadingProgress(currentBook.title, currentPage);
                 });
-
         }).catch(function(error) {
             console.error("PDF.js loading error: ", error);
             if (loadingOverlay) {
@@ -106,37 +86,30 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
     function renderPage(num) {
         pageRendering = true;
         if (loadingOverlay) loadingOverlay.style.display = 'flex';
-
         // Get the page
         pdfDoc.getPage(num).then(function(page) {
             // Calculate scale based on container width & zoomLevel
             const containerWidth = viewerContainer.clientWidth - 40; // padding adjustment
             const unscaledViewport = page.getViewport({ scale: 1.0 });
-            
             // Auto scale to fit container width, then apply user zoom
             const baseScale = containerWidth / unscaledViewport.width;
             const finalScale = baseScale * (zoomLevel / 100);
-            
             const viewport = page.getViewport({ scale: finalScale });
             canvas.height = viewport.height;
             canvas.width = viewport.width;
-
             // Render PDF page into canvas context
             const renderContext = {
                 canvasContext: ctx,
                 viewport: viewport
             };
             const renderTask = page.render(renderContext);
-
             // Wait for rendering to finish
             renderTask.promise.then(function() {
                 pageRendering = false;
                 if (loadingOverlay) loadingOverlay.style.display = 'none';
-                
                 if (pageNumPending !== null) {
                     // New page rendering is pending
                     renderPage(pageNumPending);
@@ -144,11 +117,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-
         // Update page counters
         if (inputPageNumEl) inputPageNumEl.value = num;
     }
-
     function queueRenderPage(num) {
         if (pageRendering) {
             pageNumPending = num;
@@ -156,7 +127,6 @@ document.addEventListener('DOMContentLoaded', function() {
             renderPage(num);
         }
     }
-
     // Save progress helper
     function saveReadingProgress(title, pageNum) {
         const params = 'bookTitle=' + encodeURIComponent(title) + '&page=' + pageNum;
@@ -175,7 +145,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Error updating history in database:", err);
         });
     }
-
     // Page navigation helpers
     function goToPrevPage() {
         if (currentPage > 1) {
@@ -184,10 +153,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (currentBook) saveReadingProgress(currentBook.title, currentPage);
         }
     }
-
     // Make functions globally available for dev console testing
     window.goToPrevPage = goToPrevPage;
-
     function goToNextPage() {
         if (currentPage < totalPages) {
             currentPage++;
@@ -195,18 +162,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if (currentBook) saveReadingProgress(currentBook.title, currentPage);
         }
     }
-
     window.goToNextPage = goToNextPage;
-
     // Bind navigation buttons
     if (btnPrevPage) {
         btnPrevPage.addEventListener('click', goToPrevPage);
     }
-
     if (btnNextPage) {
         btnNextPage.addEventListener('click', goToNextPage);
     }
-
     // Bind page number input field
     if (inputPageNumEl) {
         inputPageNumEl.addEventListener('keydown', function(e) {
@@ -222,7 +185,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
-
         inputPageNumEl.addEventListener('change', function() {
             const targetPage = parseInt(inputPageNumEl.value);
             if (isNaN(targetPage) || targetPage < 1 || targetPage > totalPages) {
@@ -237,7 +199,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
     // Zoom features
     if (btnZoomIn) {
         btnZoomIn.addEventListener('click', function() {
@@ -248,7 +209,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
     if (btnZoomOut) {
         btnZoomOut.addEventListener('click', function() {
             if (zoomLevel > 60) {
@@ -258,7 +218,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
     // Swipe Gestures Support
     if (viewerContainer) {
         viewerContainer.addEventListener('touchstart', function(e) {
@@ -270,7 +229,6 @@ document.addEventListener('DOMContentLoaded', function() {
             handleSwipe();
         }, { passive: true });
     }
-
     function handleSwipe() {
         const threshold = 70; // minimum swipe distance
         if (touchEndX < touchStartX - threshold) {
@@ -281,7 +239,6 @@ document.addEventListener('DOMContentLoaded', function() {
             goToPrevPage();
         }
     }
-
     // Keyboard Arrow Keys Support
     document.addEventListener('keydown', function(e) {
         if (e.key === 'ArrowLeft') {
@@ -290,7 +247,6 @@ document.addEventListener('DOMContentLoaded', function() {
             goToNextPage();
         }
     });
-
     // Download action
     if (btnDownload) {
         btnDownload.addEventListener('click', function() {
